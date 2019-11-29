@@ -12,8 +12,8 @@
   <body>
   <h1><%=link_to 'クラウドファンディング', root_path %></h1>
   <header>
-  <%= link_to 'New Product', new_product_path %>
-  <%= link_to 'New Reward', new_reward_path %>
+  <%= link_to 'New Product', new_product_path, class:"header_link"%>
+  <%= link_to 'New Reward', new_reward_path,class:"header_link" %>
   </header>
   
     <%= yield %>
