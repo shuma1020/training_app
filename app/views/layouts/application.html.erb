@@ -10,9 +10,10 @@
   </head>
 
   <body>
-  <h1>クラウドファンディング</h1>
+  <h1><%=link_to 'クラウドファンディング', root_path %></h1>
   <header>
   <%= link_to 'New Product', new_product_path %>
+  <%= link_to 'New Reward', new_reward_path %>
   </header>
   
     <%= yield %>
