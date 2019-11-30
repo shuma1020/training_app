@@ -1,32 +1,39 @@
+<div class="container">
 <p id="notice"><%= notice %></p>
 
 <h1 class="product_title">Products</h1>
 
-<table>
-  <thead>
+<table class="table table-borderless">
+  <thead class="thead-dark">
     <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th>Message</th>
-      <th>Rewards</th>
-      <th colspan="4"></th>
+      <th scope="col">参照する</th>
+      <th scope="col">編集する</th>
+      <th scope="col">削除する</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Status</th>
+      <th scope="col">Message</th>
+      <th scope="col">Rewards</th>
+      <th scope="col" colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.title %></td>
-        <td><%= product.price %></td>
-        <td><%= product.description %></td>
-        <td><%= product.message %></td>
-        <% product.rewards.each do |reward| %>
-        <td><%= reward.title%></td>
-        <% end %>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= product.title %></td>
+        <td><%= product.price %></td>
+        <td><%= product.description %></td>
+        <td><%= product.status %></td>
+        <td><%= product.message %></td>
+        <% product.rewards.each do |reward| %>
+          <td><%= reward.title%></td>
+        <% end %>
+        
       </tr>
     <% end %>
   </tbody>
@@ -35,3 +42,4 @@
 <br>
 
 
+</div>
