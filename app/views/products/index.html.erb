@@ -1,4 +1,7 @@
 <div class="container">
+<% if user_signed_in? %> 
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
+
 <p id="notice"><%= notice %></p>
 
 <h1 class="product_title">Products</h1>
@@ -31,7 +34,7 @@
         <td><%= product.status %></td>
         <td><%= product.message %></td>
         <% product.rewards.each do |reward| %>
-          <td><%= reward.title%></td>
+        <td><%= reward.title%></td>
         <% end %>
         
       </tr>
@@ -43,3 +46,8 @@
 
 
 </div>
+<% else %>
+<h2> 現在ログインしていません </h2>
+  <%= link_to "ログイン",  login_path, class: 'post' %> <!-- ログイン画面に移行する -->
+  <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
+<% end %>
