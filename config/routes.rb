@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :products
   resources :rewards
   get 'draft', to: 'products#draft'
+  get 'release', to: 'products#release'
 
   devise_scope :user do
   get 'login', to: 'devise/sessions#new'

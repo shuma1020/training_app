@@ -61,9 +61,13 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def draft
     @products = Product.where(status:"draft")
+  end
+  
+  def release
+    @products = Product.where(status:"release")
   end
 
   private
