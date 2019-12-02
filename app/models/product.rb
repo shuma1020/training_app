@@ -5,4 +5,5 @@ class Product < ApplicationRecord
     validates :title, presence: true
     validates :price, presence: true
     validates :description, presence: true
+    enum status: {下書き: 0,公開:1}
 end

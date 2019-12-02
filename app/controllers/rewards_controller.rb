@@ -14,8 +14,7 @@ class RewardsController < ApplicationController
 
   # GET /rewards/new
   def new
-    @product = Product.where(:id => params[:product_id]).first
-    @reward = @product.rewards.build
+    @reward = Reward.new
   end
 
   # GET /rewards/1/edit
