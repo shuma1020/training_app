@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  get 'battle/test'
   get 'home/index'
   devise_for :users
   resources :products
-    resources :rewards
-  
+  resources :rewards
+  get 'draft', to: 'products#draft'
 
   devise_scope :user do
   get 'login', to: 'devise/sessions#new'

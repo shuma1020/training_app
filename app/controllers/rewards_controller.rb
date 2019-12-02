@@ -11,7 +11,6 @@ class RewardsController < ApplicationController
   # GET /rewards/1
   # GET /rewards/1.json
   def show
-    
   end
 
   # GET /rewards/new

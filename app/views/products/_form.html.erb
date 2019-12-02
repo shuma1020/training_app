@@ -29,7 +29,7 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.select :status, Product.statuses.keys.map {|k| [k, k]},class:"form-control" %>
+    <%= form.select :status, Product.statuses.keys,class:"form-control" %>
   </div>
 
   <div class="field">
