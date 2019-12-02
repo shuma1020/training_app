@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   get 'home/index'
   devise_for :users
-  resources :products
+  resources :products do
+    collection  do
+      get'draft'
+    end
+    collection  do
+      get'release'
+    end
+  end
   resources :rewards
-  get 'draft', to: 'products#draft'
-  get 'release', to: 'products#release'
-
   devise_scope :user do
   get 'login', to: 'devise/sessions#new'
   post 'login', to: 'devise/sessions#create'
