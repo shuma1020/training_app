@@ -14,7 +14,8 @@ class RewardsController < ApplicationController
 
   # GET /rewards/new
   def new
-    @reward = Reward.new
+    @product = Product.where(:id => params[:product_id]).first
+    @reward = @product.rewards.build
   end
 
   # GET /rewards/1/edit
@@ -69,6 +70,6 @@ class RewardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, :product_id)
+      params.require(:reward).permit(:title, :description, :price, :product_id, :user_id)
     end
 end

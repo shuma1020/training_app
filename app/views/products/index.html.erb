@@ -17,6 +17,7 @@
       <th scope="col">Description</th>
       <th scope="col">Status</th>
       <th scope="col">Message</th>
+      <th scope="col">Users</th>
       <th scope="col">Rewards</th>
       <th scope="col" colspan="4"></th>
     </tr>
@@ -33,6 +34,7 @@
         <td><%= product.description %></td>
         <td><%= product.status %></td>
         <td><%= product.message %></td>
+        <td><%= product.user_id %></td>
         <% product.rewards.each do |reward| %>
         <td><%= reward.title%></td>
         <% end %>
