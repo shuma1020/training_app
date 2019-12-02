@@ -31,5 +31,8 @@ module SampleApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    #　以下の記述を追記する(設定必須)
+    config.i18n.default_locale = :ja # デフォルトのlocaleを日本語(:ja)にする
+    
   end
 end

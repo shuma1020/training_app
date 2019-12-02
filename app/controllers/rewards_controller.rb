@@ -4,16 +4,19 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
+    
     @rewards = Reward.all
   end
 
   # GET /rewards/1
   # GET /rewards/1.json
   def show
+    
   end
 
   # GET /rewards/new
   def new
+    
     @reward = Reward.new
     @product = Product.find(params[:product_id])
   end
