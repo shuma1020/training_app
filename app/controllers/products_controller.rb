@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :login_check, only: [:new, :edit, :update, :destroy]
+  before_action :user_check, only: [:edit, :destroy]
 
   # GET /products
   # GET /products.json
@@ -20,10 +21,6 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    unless user_signed_in? && @product.user_id == current_user.id 
-      flash[:alert] = "編集権限がありません"
-      redirect_to root_path
-    end
   end
 
   # POST /products
@@ -90,6 +87,13 @@ class ProductsController < ApplicationController
     def login_check
       unless user_signed_in?
         flash[:alert] = "ログインしてください"
+        redirect_to root_path
+      end
+    end
+
+    def user_check
+      unless user_signed_in? && @product.user_id == current_user.id 
+        flash[:alert] = "編集権限がありません"
         redirect_to root_path
       end
     end
