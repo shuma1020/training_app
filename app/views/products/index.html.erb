@@ -34,7 +34,7 @@
         <td><%= product.description %></td>
         <td><%= product.status %></td>
         <td><%= product.message %></td>
-        <td><%= product.user_id %></td>
+        <td><%= product.user.email %></td>
         <% product.rewards.each do |reward| %>
         <td><%= reward.title%></td>
         <% end %>
