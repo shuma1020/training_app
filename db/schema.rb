@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_01_075902) do
+ActiveRecord::Schema.define(version: 2019_12_03_054010) do
 
   create_table "battles", force: :cascade do |t|
     t.integer "status", limit: 1, default: 0, null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_12_01_075902) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "message"
     t.integer "status", default: 0, null: false
-    t.integer "user_id"
+    t.integer "user_id", default: 0
   end
 
   create_table "rewards", force: :cascade do |t|

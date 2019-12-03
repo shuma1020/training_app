@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  before_action :login_check, only: [:new, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
@@ -20,6 +20,10 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    unless user_signed_in? && @product.user_id == current_user.id 
+      flash[:alert] = "編集権限がありません"
+      redirect_to root_path
+    end
   end
 
   # POST /products
@@ -81,5 +85,12 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:title, :price, :description, :message, :status, :user_id)
+    end
+
+    def login_check
+      unless user_signed_in?
+        flash[:alert] = "ログインしてください"
+        redirect_to root_path
+      end
     end
 end
