@@ -204,3 +204,8 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  enums:
+  　product:
+    　status:
+        draft: 下書き
+        release: 公開
