@@ -63,11 +63,11 @@ class ProductsController < ApplicationController
   end
 
   def draft
-    @products = Product.where(status:0)
+    @products = Product.draft
   end
 
   def release
-    @products = Product.where(status:1)
+    @products = Product.release
   end
 
   private
