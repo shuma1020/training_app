@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
 
-    <% if user_signed_in? %>
+ 
       <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <%=link_to 'クラウドファンディング', root_path, class:"navbar-brand"  %>
+           <% if user_signed_in? %>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <%= link_to '製品', new_product_path, class:"nav-link"%>
@@ -29,12 +30,8 @@
               <%= link_to '公開', release_products_path, class:"nav-link" %>
             </li>
           </ul>
+          <% end %>
       </nav>
-    <% else %>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">>
-        <%=link_to 'クラウドファンディング', root_path, class:"navbar-brand"  %>
-      </nav>
-    <% end %>
   <body class="bg-light">
     <div class="container">
     <p class="notice"><%= notice %></p>
