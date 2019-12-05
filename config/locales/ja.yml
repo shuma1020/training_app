@@ -349,8 +349,13 @@ ja:
       unlocked: アカウントを凍結解除しました。
   activerecord:
     attributes:
-      prdoduct:
+      product:
         title: タイトル
+        price: 価格
+        description: 記述
+        status: 状態
+        message: メッセージ
+        user: ユーザー
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
