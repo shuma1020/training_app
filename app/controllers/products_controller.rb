@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :login_check, only: [:new, :edit, :update, :destroy]
   before_action :user_check, only: [:edit, :destroy]
-  before_action :correct_user
+  
   # GET /products
   # GET /products.json
   def index
@@ -98,7 +98,5 @@ class ProductsController < ApplicationController
       end
     end
     
-    def correct_user
-      @user = current_user.user.find(params[:id])
-    end
+   
 end

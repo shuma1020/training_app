@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  before_action :user_login
   # before_action :configure_sign_in_params, only: [:create]
-
+  
   # GET /resource/sign_in
   # def new
   #   super
@@ -24,4 +25,13 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  private
+
+  def user_login
+    if user_signed_in?
+      render reward_path
+    else
+      render root_path
+    end
+  end
 end
