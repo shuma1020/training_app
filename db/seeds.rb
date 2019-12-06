@@ -5,8 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user1 = User.create!(id: 1, email: "ssss@gmail.com", password: "ssssss", name: "shuma")
-user2 = User.create!(id: 2, email: "gggg@gmail.com", password: "gggggg", name: "gggg")
-pro1 = user1.products.create!(title: "aaa", price:100, description: "33333", message: "gggg")
-pro2 = user2.products.create!(title: "ssss", price:200, description: "3asad3", message: "gaaaa")
-reward1 = pro1.rewards.create!(title: "aaa", price: 100, description: "3333")
+user1 = User.create!(id: 1, email: "user1@example.com", password: "password", name: "shuma")
+user2 = User.create!(id: 2, email: "user2@example.com", password: "password", name: "gggg")
+user3 = User.create!(id: 3, email: "user３@example.com", password: "password", name: "user3")
+
+pro1 = user1.products.create!(title: "aaa", price:100, description: "33333", status: "release", message: "gggg")
+pro2 = user2.products.create!(title: "kaka", price:100, description: "eeee", status: "release",  message: "eeee")
+pro3 = user2.products.create!(title: "ronald", price:100, description: "eeee", status: "release",  message: "eeee")
+
+reward1 = pro2.rewards.create!(title: "aaa", price: 100, description: "3333")
+reward2 = pro3.rewards.create!(title: "bbb", price: 100, description: "3333")
+reward3 = pro3.rewards.create!(title: "ccc", price: 100, description: "3333")
+reward4 = pro3.rewards.create!(title: "ccc", price: 100, description: "3333")
+
+
+pro4 = user3.products.create!(title: "messi", price:100, description: "eeee", status: "draft",  message: "eeee")
+pro5 = user3.products.create!(title: "honda", price:100, description: "eeee", status: "draft",  message: "eeee")
+
+reward5 = pro4.rewards.create!(title: "nono", price: 100, description: "3333")
+reward6 = pro5.rewards.create!(title: "nana", price: 100, description: "3333")
+
