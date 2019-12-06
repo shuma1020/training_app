@@ -1,6 +1,6 @@
 class RewardsController < ApplicationController
   before_action :set_reward, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /rewards
   # GET /rewards.json
   def index
