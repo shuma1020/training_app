@@ -32,11 +32,11 @@
           <% end %>
         </div>
         <div id=list_index>
-          <ul>
-          　<li><%= link_to 'Show', product %></li>
-            <li><%= link_to 'Edit', edit_product_path(product) %></li>
-            <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-          </ul>
+          
+          　<span><%= link_to 'Show', product %></span>
+            <span><%= link_to 'Edit', edit_product_path(product) %></span>
+            <span><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+       
         </div>
       </div>
     </div>

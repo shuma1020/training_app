@@ -105,20 +105,17 @@ label {
   }
   */
 
-  #list_index ul li{
-    list-style: none;
+  #list_index {
+   display: flex;
+   justify-content: center;
   }
-  #list_index ul{
-    display: flex;
-  }
-  #list_index li{
-
-    padding: 10px 10px;
+  #list_index span{
+    margin: 12px;
   }
   .r{
     display: flex;
     flex-wrap: wrap;
   }
   .col-sm-6{
-    margin-bottom: 10px;
+    margin-bottom: 24px;
   }
