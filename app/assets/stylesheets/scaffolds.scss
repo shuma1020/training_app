@@ -104,3 +104,21 @@ label {
     text-align: center;
   }
   */
+
+  #list_index ul li{
+    list-style: none;
+  }
+  #list_index ul{
+    display: flex;
+  }
+  #list_index li{
+
+    padding: 10px 10px;
+  }
+  .r{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .col-sm-6{
+    margin-bottom: 10px;
+  }

@@ -2,54 +2,44 @@
 <% if user_signed_in? %> 
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
 
-
-
-<h1 class="product_title">Products</h1>
-
-<table class="table table-borderless">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">参照する</th>
-      <th scope="col">編集する</th>
-      <th scope="col">削除する</th>
-      <th scope="col">Title</th>
-      <th scope="col">Price</th>
-      <th scope="col">Description</th>
-      <th scope="col">Status</th>
-      <th scope="col">Message</th>
-      <th scope="col">Users</th>
-      <th scope="col">Rewards</th>
-      <th scope="col" colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= product.title %></td>
-        <td><%= product.price %></td>
-        <td><%= product.description %></td>
-        <td><%= product.status %></td>
-        <td><%= product.message %></td>
-        <td><%= product.user.email %></td>
-        <% product.rewards.each do |reward| %>
-        <td><%= reward.title%></td>
-        <% end %>
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-
-</div>
 <% else %>
 <h2> 現在ログインしていません </h2>
   <%= link_to "ログイン",  login_path, class: 'post' %> <!-- ログイン画面に移行する -->
   <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
 <% end %>
+
+<div class="r">
+  <% @products.each do |product| %>
+    <div class="col-sm-6">
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">Products</h5>
+          <span scope="col">タイトル</span>
+          <h6 class="card-text"><%= product.title%></h3>
+          <span scope="col">価格</span>
+          <h6 class="card-text"><%= product.price%></h3>
+          <span scope="col">詳細</span>
+          <h6 class="card-text"><%= product.description%></h3>
+          <span scope="col">状態</span>
+          <h6 class="card-text"><%= product.status%></h3>
+          <span scope="col">メッセージ</span>
+          <h6 class="card-text"><%= product.message%></h3>
+          <span scope="col">メール</span>
+          <h6 class="card-text"><%= product.user.email%></h6>
+          <span scope="col">お返し</span>
+          <% product.rewards.each do |reward| %>
+            <h6><%= reward.title%></h6>
+          <% end %>
+        </div>
+        <div id=list_index>
+          <ul>
+          　<li><%= link_to 'Show', product %></li>
+            <li><%= link_to 'Edit', edit_product_path(product) %></li>
+            <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+　　　　
