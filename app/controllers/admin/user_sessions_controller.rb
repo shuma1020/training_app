@@ -1,8 +1,7 @@
 class Admin::UserSessionsController < AdminController
-    skip_before_action :require_login, except: [:destroy], raise: false
-
+    
     def new
-       
+        @products = Product.all
     end
 
     def index
@@ -16,4 +15,9 @@ class Admin::UserSessionsController < AdminController
     def destroy
 　　　　
     end
+
+
+
+    
+
 end
