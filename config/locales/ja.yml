@@ -356,6 +356,7 @@ ja:
         status: 状態
         message: メッセージ
         user: ユーザー
+        image:　画像
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
