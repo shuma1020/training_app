@@ -6,4 +6,5 @@ class Product < ApplicationRecord
     validates :price, presence: true
     validates :description, presence: true
     enum status: {draft: 0, release:1}
+    mount_uploader :image, ImageUploader
 end
