@@ -16,9 +16,8 @@ Rails.application.routes.draw do
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "products#index"
 
-  get "/admin" => "admin/user_sessions#new"
+  get "/admin" => "admin/user#index"
   namespace :admin do
-    resources :user_sessions, only: [:create, :destroy]
-    resources :dashboards
+    resources :user
   end
 end

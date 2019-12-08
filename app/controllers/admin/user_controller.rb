@@ -1,5 +1,4 @@
-class Admin::UserSessionsController < AdminController
-    
+class Admin::UserController < ApplicationController
     def new
         @products = Product.all
     end
@@ -13,11 +12,9 @@ class Admin::UserSessionsController < AdminController
     end
 
     def destroy
-　　　　
+      p  @product.destroy
+        
+        
     end
-
-
-
-    
 
 end
