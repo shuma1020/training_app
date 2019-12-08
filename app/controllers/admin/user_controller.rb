@@ -1,6 +1,7 @@
 class Admin::UserController < ApplicationController
+    before_action :set_product, only: [:show, :edit, :update, :destroy]
     def new
-        @products = Product.all
+        @product = Product.all
     end
 
     def index
@@ -12,9 +13,15 @@ class Admin::UserController < ApplicationController
     end
 
     def destroy
-      p  @product.destroy
-        
-        
+        @product.destroy
+    end
+    def edit
+
     end
 
+    private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_product
+      @product = Product.find(params[:id])
+    end
 end

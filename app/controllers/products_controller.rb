@@ -75,6 +75,7 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+      current_user.id == @product.user_id
     end
 
  
@@ -98,5 +99,6 @@ class ProductsController < ApplicationController
       end
     end
     
+
    
 end

@@ -1,4 +1,5 @@
 <div class="container">
+<% if current_user.admin? %>
 <% if user_signed_in? %> 
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
   <div class="r">
@@ -34,9 +35,9 @@
               </div>
             </div>
           <div id=list_index>
-            　<span><%= link_to 'Show', product %></span>
-              <span><%= link_to 'Edit', edit_product_path(product) %></span>
-              <span><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+            　<span><%= link_to 'Show', product_path(product) %></span>
+              <span><%= link_to 'Edit', edit_admin_user_path(product) %></span>
+              <span><%= link_to 'Destroy', admin_user_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></span>
           </div>
         </div>
       </div>
@@ -47,4 +48,4 @@
   <%= link_to "ログイン",  login_path, class: 'post' %> <!-- ログイン画面に移行する -->
   <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
 <% end %>
-
+<%end%>
