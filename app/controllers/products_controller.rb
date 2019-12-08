@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :login_check, only: [:new, :edit, :update, :destroy]
   before_action :user_check, only: [:edit, :destroy]
   before_action :authenticate_user!
+  
   # GET /products
   # GET /products.json
   def index
@@ -75,7 +76,6 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
-      current_user.id == @product.user_id
     end
 
  
@@ -99,6 +99,9 @@ class ProductsController < ApplicationController
       end
     end
     
-
+    def setting
+      @product = Product.find(params[:id])
+      current_user.id == @product.user_id
+    end
    
 end
