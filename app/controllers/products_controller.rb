@@ -98,10 +98,4 @@ class ProductsController < ApplicationController
         redirect_to root_path
       end
     end
-    
-    def setting
-      @product = Product.find(params[:id])
-      current_user.id == @product.user_id
-    end
-   
 end

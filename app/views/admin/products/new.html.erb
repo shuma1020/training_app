@@ -1,0 +1,50 @@
+<div class="container">
+<% if user_signed_in? %> 
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
+  <div class="r">
+    <% @products.each do |product| %>
+      <div class="col-sm-6">
+        <div class="card" >
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h6 class="card-text"><%= product.title%></h3>
+                <span scope="col">価格</span>
+                <h6 class="card-text"><%= product.price%></h3>
+                <span scope="col">詳細</span>
+                <h6 class="card-text"><%= product.description%></h3>
+                <span scope="col">状態</span>
+                <h6 class="card-text"><%= product.status%></h3>
+                <span scope="col">メッセージ</span>
+                <h6 class="card-text"><%= product.message%></h3>
+                <span scope="col">メール</span>
+                <h6 class="card-text"><%= product.user.email%></h6>
+                <span scope="col">お返し</span>
+                <% product.rewards.each do |reward| %>
+                  <h6><%= reward.title%></h6>
+                <% end %>
+              </div>
+              <div class="col">
+                <% if product.image? %>
+                  <div class="thumbnail">
+                    <%= image_tag product.image.url,class:"img-fluid", alt:"Responsive image"%>
+                  </div>
+                <% end %>
+              </div>
+              </div>
+            </div>
+          <div id=list_index>
+            　<span><%= link_to 'Show', product_path(product) %></span>
+              <span><%= link_to 'Edit', edit_admin_product_path(product) %></span>
+              <span><%= link_to 'Destroy', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <% else %>
+<h2> 現在ログインしていません </h2>
+  <%= link_to "ログイン",  login_path, class: 'post' %> <!-- ログイン画面に移行する -->
+  <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
+<% end %>
+
