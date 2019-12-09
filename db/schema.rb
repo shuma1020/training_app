@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_07_105029) do
+ActiveRecord::Schema.define(version: 2019_12_09_061223) do
 
   create_table "products", force: :cascade do |t|
     t.string "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_12_07_105029) do
     t.integer "status", default: 0, null: false
     t.integer "user_id", default: 0
     t.string "image"
+    t.integer "patron_id"
   end
 
   create_table "rewards", force: :cascade do |t|
