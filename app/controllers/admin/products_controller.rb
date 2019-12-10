@@ -1,10 +1,9 @@
 class Admin::ProductsController < ApplicationController
     before_action :set_product, only: [:show, :edit, :update, :destroy]
-    #before_action :admin_check
+    before_action :admin_check
     def new
         @product = Product.all
     end
-p
     def index
         @products = Product.all
     end
@@ -26,11 +25,9 @@ p
       @product = Product.find(params[:id])
     end
     def admin_check
-    if user_signed_in? && current_user.role == "staff"
-        render action: :index
-    else
-        render action: :edit
-        flash[:alert] = "管理者画面です"
+    unless user_signed_in? && current_user.role == "staff"
+        redirect_to root_path
+        flash[:notice] = "管理者画面です"
     end
     end
 end
