@@ -24,10 +24,11 @@ class Admin::ProductsController < ApplicationController
     def set_product
       @product = Product.find(params[:id])
     end
+
     def admin_check
-    unless user_signed_in? && current_user.role == "staff"
-        redirect_to root_path
-        flash[:notice] = "管理者画面です"
-    end
+        unless user_signed_in? && current_user.role == :staff
+            redirect_to root_path
+            flash[:notice] = "管理者画面です"
+        end
     end
 end
