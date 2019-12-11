@@ -26,7 +26,7 @@ class Admin::ProductsController < ApplicationController
     end
 
     def admin_check
-        unless user_signed_in? && current_user.role == :staff
+        unless user_signed_in? && current_user.role == "staff"
             redirect_to root_path
             flash[:notice] = "管理者画面です"
         end
