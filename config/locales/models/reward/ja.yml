@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      reward:
+        title: タイトル
+        price: 価格
+        description: 記述
+        status: 状態
+        message: メッセージ
+        user: ユーザー
+        image: 画像

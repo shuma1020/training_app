@@ -20,7 +20,7 @@
  <div class="field">
     <% if product.image? %>
       <div class="thumbnail">
-        <%= image_tag product.image.url %>
+        <%= image_tag product.image.url,class:"img-thumbnail" %>
       </div>
     <% end %><br>
     <%= form.label :image %><br>
@@ -55,11 +55,6 @@
   <div class="field">
     <%= form.label :message%>
     <%= form.text_area :message, class:"form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, class:"form-control"%>
   </div>
 
 

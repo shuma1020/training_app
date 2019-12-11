@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :login_check, only: [:new, :edit, :update, :destroy]
   before_action :user_check, only: [:edit, :destroy]
   
-  
+
   # GET /products
   # GET /products.json
   def index
@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
+    #current_user.id = @product.user.id
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
