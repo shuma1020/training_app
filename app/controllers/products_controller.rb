@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :login_check, only: [:new, :edit, :update, :destroy]
   before_action :user_check, only: [:edit, :destroy]
   
+
   # GET /products
   # GET /products.json
   def index
@@ -97,6 +98,4 @@ class ProductsController < ApplicationController
         redirect_to root_path
       end
     end
-    
-   
 end
