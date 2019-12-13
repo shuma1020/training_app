@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :login_check, only: [:new, :edit, :update, :destroy]
   before_action :user_check, only: [:edit, :destroy]
   
+
   # GET /products
   # GET /products.json
   def index
@@ -26,8 +27,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
-    #current_user.id = @product.user.id
+    @product = current_user.products.new(product_params)
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -90,13 +90,11 @@ class ProductsController < ApplicationController
         redirect_to root_path
       end
     end
-
+    
     def user_check
       unless user_signed_in? && @product.user_id == current_user.id 
         flash[:alert] = "編集権限がありません"
         redirect_to root_path
       end
     end
-    
-   
 end
