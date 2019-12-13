@@ -1,5 +1,7 @@
 ja:
   activerecord:
+    models:
+      reward: お返し
     attributes:
       reward:
         title: タイトル
@@ -9,3 +11,4 @@ ja:
         message: メッセージ
         user: ユーザー
         image: 画像
+        product_id: 製品

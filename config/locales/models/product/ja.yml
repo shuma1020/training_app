@@ -1,5 +1,7 @@
 ja:
   activerecord:
+    models:
+      product: 製品
     attributes:
       product:
         title: タイトル
@@ -9,3 +11,5 @@ ja:
         message: メッセージ
         user: ユーザー
         image: 画像
+        product: 製品
+        

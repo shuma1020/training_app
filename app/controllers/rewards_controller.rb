@@ -15,9 +15,7 @@ class RewardsController < ApplicationController
 
   # GET /rewards/new
   def new
-    
     @reward = Reward.new
-    #@product = Product.find(params[:product_id])
   end
 
   # GET /rewards/1/edit
