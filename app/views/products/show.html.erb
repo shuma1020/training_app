@@ -1,42 +1,41 @@
 <div class="container">
-<p class="main-title">
-  <%= @product.title %>
-</p>
-<div class="row">
+  <p class="main-title">
+    <%= @product.title %>
+  </p>
+  <div class="row">
+
+  <div class="col">
+  <% if @product.image? %>
+      <div class="thumb">
+        <%= image_tag @product.image.url,class:"img-thumbnail ", alt:"Responsive image"%>
+      </div>
+  <% end %>
+  </div>
+  <div class="col">
+  <strong>目標金額</strong>
+  <p class="show-title">
+    <%= @product.price %>
+  </p>
 
 
-<div class="col">
-<% if @product.image? %>
-    <div class="thumb">
-      <%= image_tag @product.image.url,class:"img-thumbnail ", alt:"Responsive image"%>
-    </div>
-<% end %>
-</div>
-<div class="col">
-<strong>目標金額</strong>
-<p class="show-title">
-  <%= @product.price %>
-</p>
+  <strong>概要</strong>
+  <p class="show-title">
+    <%= @product.description %>
+  </p>
 
 
-<strong>概要</strong>
-<p class="show-title">
-  <%= @product.description %>
-</p>
+  <strong>状態</strong>
+  <p class="show-title">
+    <%= @product.status %>
+  </p>
 
 
-<strong>状態</strong>
-<p class="show-title">
-  <%= @product.status %>
-</p>
+  <strong>メッセージ</strong>
+  <p class="show-title">
+    <%= @product.message %>
+  </p>
+  </div>
 
-
-<strong>メッセージ</strong>
-<p class="show-title">
-  <%= @product.message %>
-</p>
-</div>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
 </div>
