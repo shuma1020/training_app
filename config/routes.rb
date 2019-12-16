@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get'draft'
       get'release'
     end
-    resources :rewards
+    resources :rewards, only: [:index]
   end
   devise_scope :user do
   get 'login', to: 'devise/sessions#new'
@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   namespace :mypage do
     resources :products
   end
+  resources :rewards
 end
