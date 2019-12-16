@@ -72,6 +72,11 @@ class ProductsController < ApplicationController
     @products = Product.release
   end
 
+  def patron
+    @product = Product.find(params[:id])
+    redirect_to @product, notice:"パトロンになりました"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

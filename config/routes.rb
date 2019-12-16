@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get'draft'
       get'release'
     end
+    patch "patron", "not_patron", on: :member
     resources :rewards, only: [:index]
   end
   devise_scope :user do

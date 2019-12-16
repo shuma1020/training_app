@@ -1,0 +1,7 @@
+<% @product.patrons.each do |patron|%>
+<% patron.name%>
+<%end%>
+
+<% if current_user %>
+<%=link_to "パトロンになる", [:patron, @product], method: :patch, class: "button"%>
+<%end%>
