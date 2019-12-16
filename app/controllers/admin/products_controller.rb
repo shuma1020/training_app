@@ -16,7 +16,7 @@ class Admin::ProductsController < ApplicationController
         @product.destroy
     end
     def edit
-        @product = Product.all
+       
     end
 
     private
