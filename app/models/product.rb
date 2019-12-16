@@ -7,4 +7,6 @@ class Product < ApplicationRecord
     validates :description, presence: true
     enum status: {draft: 0, release:1}
     mount_uploader :image, ImageUploader
+    has_many :agents
+    has_many :patrons, through: :agents, source: :user
 end

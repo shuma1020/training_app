@@ -13,12 +13,12 @@
 ActiveRecord::Schema.define(version: 2019_12_16_062000) do
 
   create_table "agents", force: :cascade do |t|
-    t.integer "reward_id", null: false
+    t.integer "user_id", null: false
     t.integer "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_agents_on_product_id"
-    t.index ["reward_id"], name: "index_agents_on_reward_id"
+    t.index ["user_id"], name: "index_agents_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|

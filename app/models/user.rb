@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :products
   enum role: { normal: 0, staff: 1 }
+  has_many :agents
+  has_many :items, through: :agents, source: :product
 end
