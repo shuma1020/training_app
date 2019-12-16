@@ -3,6 +3,11 @@
     <%=link_to 'クラウドファンディング', root_path, class:"navbar-brand"  %>
     <% if user_signed_in? %>
         <ul class="navbar-nav mr-auto">
+            <%if request.path.include?("mypage")%>
+                <li class="nav-item active">
+                    <%= link_to '「ものを作る」', new_mypage_product_path, class:"nav-link"%>
+                </li>
+            <%end%>
             <li class="nav-item active">
                 <%= link_to_unless_current '「お返し」を作成する', new_reward_path, class:"nav-link" %>
             </li>
