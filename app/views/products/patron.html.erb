@@ -2,12 +2,12 @@
 <h2>この記事にいいねしたユーザー</h2>
 <table class="table table-borderless">
 <tbody>
-<thead class="thead-dark">  
-      <tr>
-        <th scope="col">名前</th>
-        <th scope="col">メールアドレス</th>
-      </tr>
-    </thead>
+  <thead class="thead-dark">  
+        <tr>
+          <th scope="col">名前</th>
+          <th scope="col">メールアドレス</th>
+        </tr>
+  </thead>
 <% @product.patrons.each do |user| %>
 <tr>
   <td><h4><%= user.name %></h4></td>

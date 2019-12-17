@@ -8,7 +8,7 @@ class AgentsController < ApplicationController
         )
 
         if @agent.save
-            redirect_to product_path(@product)
+            redirect_to product_path(@product), notice: "パトロンになりました！"
         else
             redirect_to product_path(@product), notice: "すでにパトロンになっています"
         end
