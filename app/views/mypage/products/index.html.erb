@@ -3,7 +3,7 @@
 <div id=list_index>
     <span><%= link_to 'Show', mypage_product_path(product) %></span>
     <span><%= link_to 'Edit', edit_mypage_product_path(product) %></span>
-    <span><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+    <span><%= link_to 'Destroy', mypage_product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></span>
 </div>
 <%end%>
 <h2 class="nav-item active">
