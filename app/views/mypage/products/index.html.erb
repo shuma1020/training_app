@@ -1,16 +1,16 @@
 <div class="container">
-<%= render "shared/index"%>
-<h4>パトロンになったもの</h4>
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th>プロジェクトの名前</th>
-        </tr>
-    </thead>
-<% current_user.items.each do |item|%>
-<tr>
-    <td><%=item.title%></td>
-</tr>
-<%end%>
-</table>
+    <%= render "shared/index"%>
+    <h4>パトロンになったもの</h4>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>プロジェクトの名前</th>
+            </tr>
+        </thead>
+    <% current_user.items.each do |item|%>
+    <tr>
+        <td><%=item.title%></td>
+    </tr>
+    <%end%>
+    </table>
 </div>
