@@ -13,6 +13,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @product = Product.find(params[:id])
+    @agent = Agent.new() 
   end
 
   # GET /products/new
@@ -74,7 +76,6 @@ class ProductsController < ApplicationController
 
   def patron
     @product = Product.find(params[:id])
-    redirect_to @product, notice:"パトロンになりました"
   end
 
   private

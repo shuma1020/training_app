@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get'draft'
       get'release'
     end
-    patch "patron", "not_patron", on: :member
+    resources :agents, only: [:destroy, :create]
     resources :rewards, only: [:index]
   end
   devise_scope :user do
@@ -25,4 +25,5 @@ Rails.application.routes.draw do
     resources :products
   end
   resources :rewards
+  get 'patron/:id', to: 'products#patron'
 end
