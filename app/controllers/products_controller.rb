@@ -71,6 +71,12 @@ class ProductsController < ApplicationController
     @products = Product.release
   end
 
+  def like 
+    @product = Product.find(params[:id])
+    current_user.liked_products << @product
+    redirect_to @product, notice: "いいねしました！"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
