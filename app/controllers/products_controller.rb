@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy,:like]
   before_action :login_check, only: [:new, :edit, :update, :destroy]
   before_action :user_check, only: [:edit, :destroy]
   
@@ -72,7 +72,6 @@ class ProductsController < ApplicationController
   end
 
   def like 
-    @product = Product.find(params[:id])
     current_user.liked_products << @product
     redirect_to @product, notice: "いいねしました！"
   end
