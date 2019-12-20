@@ -36,8 +36,8 @@
   </p>
   </div>
   <% if current_user.liked_for?(@product)%>
-    <%=link_to "★いいね", [:like, @product], method: :patch%>
-  <%end%>
+    <%=link_to "★いいね", [:like, @product], method: :patch　%>
+  <%　end　%>
   <%= link_to 'Edit', edit_product_path(@product) %> |
   <%= link_to 'Back', products_path %>
 </div>
