@@ -1,0 +1,18 @@
+<div class="container">
+    <%= notice %>
+    <table class="table table-borderless">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">いいねしたプロジェクト</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @products.each do |product|%>
+                <tr>
+                    <td><%= product.title %></td>
+                    <td><%=link_to "削除する", [:unlike, product], method: :patch, data: {confirm: "削除しますか？"}%></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       get'draft'
       get'release'
     end
+    patch "like", "unlike", on: :member
+    get "liked", on: :collection
   end
   devise_scope :user do
   get 'login', to: 'devise/sessions#new'

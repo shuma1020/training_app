@@ -1,9 +1,9 @@
 <div class="container">
-  <% if user_signed_in? %> 
+  <% if user_signed_in? %>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
   <h1 class="product_title">Products</h1>
   <table class="table table-borderless">
-    <thead class="thead-dark">  
+    <thead class="thead-dark">
 
       <tr>
         <th scope="col">参照する</th>
@@ -41,7 +41,7 @@
       <% end%>
     </tbody>
   </table>
-  <br>     
+  <br>
   <% else %>
   <h2> 現在ログインしていません </h2>
     <%= link_to "ログイン",  login_path, class: 'post' %> <!-- ログイン画面に移行する -->

@@ -5,4 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :products
   enum role: { normal: 0, staff: 1 }
+  has_many :likes, dependent: :destroy
+  has_many :liked_products, through: :likes, source: :product
+
+  def liked_for?(product)
+    product && product.user != self && !likes.exists?(product_id: product.id)
+  end
 end
