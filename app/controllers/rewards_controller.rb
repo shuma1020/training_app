@@ -4,7 +4,7 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    if params[:product_id]
+    
     @product = Product.find(params[:product_id])
     @rewards = @product.rewards
     else

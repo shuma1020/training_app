@@ -24,7 +24,6 @@ class ProductsController < ApplicationController
 
   # POST /products
   # POST /products.json
-
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
