@@ -4,8 +4,12 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    
-    @rewards = Reward.all
+    if params[:product_id]
+    @product = Product.find(params[:product_id])
+    @rewards = @product.rewards
+    else
+      @rewards = Reward.all
+    end
   end
 
   # GET /rewards/1

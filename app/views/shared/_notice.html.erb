@@ -1,0 +1,10 @@
+<% if notice.present? %>
+    <div class="alert alert-info" role="alert">
+        <%= notice %>
+    </div>
+<%end%>
+<% if flash[:alert] %>
+    <div class="alert alert-danger">
+        <%= flash[:alert] %>
+    </div>
+<% end %>
