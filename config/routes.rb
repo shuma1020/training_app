@@ -6,7 +6,6 @@ Rails.application.routes.draw do
       get'draft'
       get'release'
     end
-    resources :rewards, only: [:index]
   end
   devise_scope :user do
   get 'login', to: 'devise/sessions#new'
