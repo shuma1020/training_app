@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :login_check, only: [:new, :edit, :update, :destroy]
   before_action :user_check, only: [:edit, :destroy]
-  
+
 
   # GET /products
   # GET /products.json
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-    @agent = Agent.new() 
+    @agent = Agent.new()
   end
 
   # GET /products/new
@@ -74,13 +74,29 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def like
+    @product = Product.find(params[:id])
+    current_user.liked_products << @product
+    redirect_to @product, notice: "いいねしました！"
+  end
+
+  def unlike
+    current_user.liked_products.destroy(set_product)
+    redirect_to :liked_products, notice: "いいねを削除しました！"
+  end
+
+  def liked
+    @products = current_user.liked_products.all
+  end
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
 
- 
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
@@ -93,9 +109,9 @@ class ProductsController < ApplicationController
         redirect_to root_path
       end
     end
-    
+
     def user_check
-      unless user_signed_in? && @product.user_id == current_user.id 
+      unless user_signed_in? && @product.user_id == current_user.id
         flash[:alert] = "編集権限がありません"
         redirect_to root_path
       end
