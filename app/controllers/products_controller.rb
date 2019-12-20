@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy,:like]
   before_action :login_check, only: [:new, :edit, :update, :destroy]
   before_action :user_check, only: [:edit, :destroy]
-  
+
 
   # GET /products
   # GET /products.json
@@ -71,9 +71,18 @@ class ProductsController < ApplicationController
     @products = Product.release
   end
 
-  def like 
+  def like
     current_user.liked_products << @product
     redirect_to @product, notice: "いいねしました！"
+  end
+
+  def unlike
+    current_user.liked_products.destroy(Product.find(params[:id]))
+    redirect_to :liked_products, notice: "削除しました！"
+  end
+
+  def liked
+    @products = current_user.liked_products.all
   end
 
   private
@@ -82,7 +91,7 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
     end
 
- 
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
@@ -95,9 +104,9 @@ class ProductsController < ApplicationController
         redirect_to root_path
       end
     end
-    
+
     def user_check
-      unless user_signed_in? && @product.user_id == current_user.id 
+      unless user_signed_in? && @product.user_id == current_user.id
         flash[:alert] = "編集権限がありません"
         redirect_to root_path
       end
