@@ -1,0 +1,11 @@
+<%= render "shared/index"%>
+<% @products.each do |product| %>
+<div id=list_index>
+    <span><%= link_to 'Show', mypage_product_path(product) %></span>
+    <span><%= link_to 'Edit', edit_mypage_product_path(product) %></span>
+    <span><%= link_to 'Destroy', mypage_product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></span>
+</div>
+<%end%>
+<h2 class="nav-item active">
+    <%= link_to_unless_current '「ものを作る」', new_mypage_product_path, class:"nav-link"%>
+</h2>

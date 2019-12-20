@@ -6,8 +6,8 @@ Rails.application.routes.draw do
       get'draft'
       get'release'
     end
+    resources :rewards, only: [:index]
   end
-  resources :rewards
   devise_scope :user do
   get 'login', to: 'devise/sessions#new'
   post 'login', to: 'devise/sessions#create'
@@ -20,4 +20,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products
   end
+  namespace :mypage do
+    resources :products
+  end
+  resources :rewards
 end
