@@ -18,10 +18,6 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/new
-  def new
-    @product = Product.new
-    @reward = @product.rewards.new
-  end
 
   # GET /products/1/edit
   def edit
