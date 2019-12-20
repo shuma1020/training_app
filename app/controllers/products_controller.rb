@@ -50,6 +50,10 @@ class ProductsController < ApplicationController
     @products = Product.release
   end
 
+  def patron
+    @product = Product.find(params[:id])
+  end
+
   def like
     @product = Product.find(params[:id])
     current_user.liked_products << @product
