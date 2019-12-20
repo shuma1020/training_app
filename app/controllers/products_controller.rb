@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/new
- 
+
 
   # GET /products/1/edit
   def edit
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1
   # DELETE /products/1.json
-  
+
 
   def draft
     @products = Product.draft
