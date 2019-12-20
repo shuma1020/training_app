@@ -72,13 +72,14 @@ class ProductsController < ApplicationController
   end
 
   def like
+    @product = Product.find(params[:id])
     current_user.liked_products << @product
     redirect_to @product, notice: "いいねしました！"
   end
 
   def unlike
-    current_user.liked_products.destroy(Product.find(params[:id]))
-    redirect_to :liked_products, notice: "削除しました！"
+    current_user.liked_products.destroy(set_product)
+    redirect_to :liked_products, notice: "いいねを削除しました！"
   end
 
   def liked
