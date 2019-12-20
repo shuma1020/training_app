@@ -197,16 +197,6 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  attributes:
-  user:
-    name: 名前
-    age: 年齢
-
-  site_title: サイトのタイトル
-
-  product: 
-    title: タイトル
-    price: 価格
 
   enums:
   　product:
@@ -242,19 +232,7 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
-    models:
-      user: ユーザ
   
-  activerecord:
-    attributes:
-      product:
-        title: タイトル
-        price: 価格
-        description: 記述
-        status: 状態
-        message: メッセージ
-        user: ユーザー
-        image: 画像
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
