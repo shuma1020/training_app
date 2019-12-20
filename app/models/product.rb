@@ -9,6 +9,4 @@ class Product < ApplicationRecord
     mount_uploader :image, ImageUploader
     has_many :likes, dependent: :destroy
     has_many :likeres, through: :likes, source: :user
-    has_many :agents
-    has_many :patrons, through: :agents, source: :user
 end
