@@ -60,14 +60,9 @@ class ProductsController < ApplicationController
     redirect_to @product, notice: "いいねしました！"
   end
 
-  def unlike
-    current_user.liked_products.destroy(set_product)
-    redirect_to :liked_products, notice: "いいねを削除しました！"
-  end
 
-  def liked
-    @products = current_user.liked_products.all
-  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -7,8 +7,7 @@ Rails.application.routes.draw do
       get "release"
     end
     resources :rewards, only: [:index]
-    patch "like", "unlike", on: :member
-    get "liked", on: :collection
+    patch "like",  on: :member
   end
   resources :rewards
   devise_scope :user do
@@ -24,6 +23,9 @@ Rails.application.routes.draw do
     resources :products
   end
   namespace :mypage do
-    resources :products
+    resources :products do
+      get "liked", on: :collection
+      patch "unlike", on: :member
+    end
   end
 end

@@ -42,9 +42,18 @@ class Mypage::ProductsController < ApplicationController
     def destroy
         @product.destroy
         respond_to do |format|
-          format.html { redirect_to mypage_products_path, notice: 'Product was successfully destroyed.' }
-          format.json { head :no_content }
+            format.html { redirect_to mypage_products_path, notice: 'Product was successfully destroyed.' }
+            format.json { head :no_content }
         end
+    end
+
+    def liked
+        @products = current_user.liked_products.all
+    end
+
+    def unlike
+        current_user.liked_products.destroy(Product.find(params[:id]))
+        redirect_to :liked_mypage_products, notice: "いいねを削除しました！"
     end
 
 
