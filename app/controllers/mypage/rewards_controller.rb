@@ -1,6 +1,6 @@
-class RewardsController < ApplicationController
+class Mypage::RewardsController < ApplicationController
   before_action :set_reward, only: [:show, :edit, :update, :destroy]
-  
+
   # GET /rewards
   # GET /rewards.json
   def index
@@ -30,10 +30,9 @@ class RewardsController < ApplicationController
   # POST /rewards.json
   def create
     @reward = Reward.new(reward_params)
-
     respond_to do |format|
-      if @reward.save
-        format.html { redirect_to @reward, notice: 'Reward was successfully created.' }
+      if  @reward.save
+        format.html { redirect_to mypage_reward_path(@reward), notice: 'Reward was successfully created.' }
         format.json { render :show, status: :created, location: @reward }
       else
         format.html { render :new }
@@ -47,7 +46,7 @@ class RewardsController < ApplicationController
   def update
     respond_to do |format|
       if @reward.update(reward_params)
-        format.html { redirect_to @reward, notice: 'Reward was successfully updated.' }
+        format.html { redirect_to mypage_rewards_path(@reward), notice: 'Reward was successfully updated.' }
         format.json { render :show, status: :ok, location: @reward }
       else
         format.html { render :edit }
@@ -74,7 +73,7 @@ class RewardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reward_params
-      params.require(:reward).permit(:title, :description, :price, :product_id, :user_id)
+        params.require(:reward).permit(:title, :description, :price, :product_id, :user_id)
     end
-    
+
 end

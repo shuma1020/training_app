@@ -6,10 +6,8 @@ Rails.application.routes.draw do
       get "draft"
       get "release"
     end
-    resources :rewards, only: [:index]
     patch "like",  on: :member
   end
-  resources :rewards
   devise_scope :user do
     get "login", to: "devise/sessions#new"
     post "login", to: "devise/sessions#create"
@@ -26,6 +24,8 @@ Rails.application.routes.draw do
     resources :products do
       get "liked", on: :collection
       patch "unlike", on: :member
+      resources :rewards, only: [:index]
     end
+    resources :rewards
   end
 end
