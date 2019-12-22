@@ -35,7 +35,7 @@
     <%= @product.message %>
   </p>
   </div>
-
+  <%= link_to 'Reward',mypage_product_rewards_path(@product) %> |
   <%= link_to 'Edit',edit_mypage_product_path(@product) %> |
   <%= link_to 'Back', mypage_products_path %>
 </div>
