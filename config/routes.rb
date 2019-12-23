@@ -26,6 +26,5 @@ Rails.application.routes.draw do
       patch "unlike", on: :member
       resources :rewards, only: [:new, :create, :edit, :update, :destroy, :show]
     end
-    resources :rewards
   end
 end
