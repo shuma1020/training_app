@@ -15,8 +15,6 @@ class Mypage::RewardsController < ApplicationController
   # GET /rewards/1
   # GET /rewards/1.json
   def show
-    @product = Product.find(params[:product_id])
-    @reward = @product.rewards.find(params[:id])
   end
 
   # GET /rewards/new
@@ -27,15 +25,13 @@ class Mypage::RewardsController < ApplicationController
 
   # GET /rewards/1/edit
   def edit
-    @product = Product.find(params[:product_id])
-    @reward = @product.rewards.find(params[:id])
   end
 
   # POST /rewards
   # POST /rewards.json
   def create
     @product = Product.find(params[:product_id])
-    @reward = Reward.new(reward_params)
+    @reward = @product.rewards.new(reward_params)
     respond_to do |format|
       if  @reward.save
         format.html { redirect_to mypage_product_path(@product), notice: 'Reward was successfully created.' }
@@ -50,7 +46,6 @@ class Mypage::RewardsController < ApplicationController
   # PATCH/PUT /rewards/1
   # PATCH/PUT /rewards/1.json
   def update
-    @product = Product.find(params[:product_id])
     respond_to do |format|
       if @reward.update(reward_params)
         format.html { redirect_to mypage_product_path(@product), notice: 'Reward was successfully updated.' }
@@ -65,7 +60,6 @@ class Mypage::RewardsController < ApplicationController
   # DELETE /rewards/1
   # DELETE /rewards/1.json
   def destroy
-    @product = Product.find(params[:product_id])
     @reward.destroy
     respond_to do |format|
       format.html { redirect_to  mypage_product_path(@product), notice: 'Reward was successfully destroyed.' }
@@ -76,7 +70,8 @@ class Mypage::RewardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reward
-      @reward = Reward.find(params[:id])
+      @product = Product.find(params[:product_id])
+      @reward = @product.rewards.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
