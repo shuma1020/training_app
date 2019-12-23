@@ -2,6 +2,9 @@ class Mypage::ProductsController < ApplicationController
     before_action :set_product, only: [:show, :edit, :update, :destroy]
     def index
         @products = current_user.products.all
+        if params[:product_id]
+        @product = Product.find(params[:product_id])
+        end
     end
 
     def new
