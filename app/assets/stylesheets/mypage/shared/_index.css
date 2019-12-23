@@ -1,0 +1,47 @@
+
+.card{
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+}
+.card .col{
+  margin: 12px;
+}
+
+.card .card-body .link_to{
+  text-align: center;
+}
+
+.card .card-body .link_to a{
+  margin-right: 12px;
+}
+ul, li{
+  list-style: none;
+}
+
+.main-project{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.main-project .first-one{
+  width: 50%;
+}
+
+.main-project .second-one {
+  width: 50%;
+}
+
+.main-project .second-wrapper ul {
+  display: flex;
+  padding-left: 4px;
+}
+
+.main-project .second-one {
+  display: flex;
+  flex-wrap: wrap;
+}
+.main-project .second-one .second-wrapper{
+  padding: 4px;
+}
