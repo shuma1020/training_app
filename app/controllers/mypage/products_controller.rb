@@ -12,6 +12,12 @@ class Mypage::ProductsController < ApplicationController
     end
 
     def show
+        if params[:id]
+            @product = Product.find(params[:id])
+            @rewards = @product.rewards
+        else
+            @rewards = Reward.all
+        end
     end
 
     def create
@@ -30,7 +36,7 @@ class Mypage::ProductsController < ApplicationController
     def update
         respond_to do |format|
         if @product.update(product_params)
-            format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+            format.html { redirect_to mypage_product_path(@product), notice: 'Product was successfully updated.' }
             format.json { render :show, status: :ok, location: @product }
         else
             format.html { render :edit }

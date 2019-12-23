@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :products do
       get "liked", on: :collection
       patch "unlike", on: :member
-      resources :rewards, only: [:index]
+      resources :rewards, only: [:new, :create, :edit, :update, :destroy, :show]
     end
     resources :rewards
   end
