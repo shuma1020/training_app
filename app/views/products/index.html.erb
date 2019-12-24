@@ -1,5 +1,5 @@
 
-<div class="container">
+
 <% if user_signed_in? %>
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
     <div class="r">
@@ -40,7 +40,7 @@
         </div>
     </div>
     <% end %>
-</div>
+
 <% else %>
 <h2> 現在ログインしていません </h2>
     <%= link_to "ログイン",  login_path, class: 'post' %> <!-- ログイン画面に移行する -->
