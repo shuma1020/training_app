@@ -1,0 +1,13 @@
+<%=@product.title%>
+
+<% @rewards.each do |reward| %>
+  <%= reward.title %>
+<% end %>
+
+<%= form_with(model: [:product_patrons, @product], local: true) do |f| %>
+<div class="field">
+    <%= f.label :price %>
+    <%= f.number_field :price, class:"form-control" %>
+  </div>
+
+<% end %>

@@ -27,4 +27,7 @@ Rails.application.routes.draw do
       resources :rewards, only: [:new, :create, :edit, :update, :destroy, :show]
     end
   end
+  resources :products, only: [:show] do
+    resources :patrons
+  end
 end
