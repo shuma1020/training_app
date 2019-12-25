@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get "home/index"
   devise_for :users
-  resources :products do
+  resources :products, only: [:index, :show] do
     collection do
       get "draft"
       get "release"

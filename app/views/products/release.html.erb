@@ -10,8 +10,6 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">参照する</th>
-      <th scope="col">編集する</th>
-      <th scope="col">削除する</th>
       <th scope="col">Title</th>
       <th scope="col">Price</th>
       <th scope="col">Description</th>
@@ -27,8 +25,6 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= product.title %></td>
         <td><%= product.price %></td>
         <td><%= product.description %></td>

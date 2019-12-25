@@ -15,43 +15,12 @@ class ProductsController < ApplicationController
   def show
   end
 
-  # GET /products/new
-
-
-  # GET /products/1/edit
-  def edit
-  end
-
-  # POST /products
-  # POST /products.json
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
-  def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /products/1
-  # DELETE /products/1.json
-
-
   def draft
     @products = Product.draft
   end
 
   def release
     @products = Product.release
-  end
-
-  def patron
-    @product = Product.find(params[:id])
   end
 
   def like
