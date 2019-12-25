@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     end
   end
   resources :products, only: [:show] do
-    resources :patrons
+    resources :patrons, only: [:new]
+    post "patron",  on: :member
   end
 end

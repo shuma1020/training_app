@@ -1,13 +1,9 @@
-<%=@product.title%>
-
-<% @rewards.each do |reward| %>
-  <%= reward.title %>
-<% end %>
-
-<%= form_with(model: [:product_patrons, @product], local: true) do |f| %>
-<div class="field">
-    <%= f.label :price %>
-    <%= f.number_field :price, class:"form-control" %>
+<%= form_with url: patron_product_path(@product, @user) do |f| %>
+  <div class="field">
+    <%= f.label :donation %>
+    <%= f.number_field :donation, class:"form-control" %>
   </div>
-
+  <div class="actions">
+    <%= f.submit class:"btn btn-primary" %>
+  </div>
 <% end %>

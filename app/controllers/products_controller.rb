@@ -29,6 +29,20 @@ class ProductsController < ApplicationController
     redirect_to @product, notice: "いいねしました！"
   end
 
+  def patron
+    @product = Product.find(params[:id])
+    current_user.donation = (params[:donation])
+    respond_to do |format|
+      if current_user.save
+      format.html { redirect_to @product, notice: 'Product was successfully created.' }
+      format.json { render :show, status: :created, location: @product }
+      else
+      format.html { render :new }
+      format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+  end
+  end
+
 
 
 
