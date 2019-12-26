@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get "draft"
       get "release"
     end
+    resources :patrons, only: [:new, :create]
     patch "like",  on: :member
   end
   devise_scope :user do
@@ -26,9 +27,5 @@ Rails.application.routes.draw do
       patch "unlike", on: :member
       resources :rewards, only: [:new, :create, :edit, :update, :destroy, :show]
     end
-  end
-  resources :products, only: [:show] do
-    resources :patrons, only: [:new]
-    post "patron",  on: :member
   end
 end

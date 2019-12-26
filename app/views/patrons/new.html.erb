@@ -1,4 +1,4 @@
-<%= form_with url: patron_product_path(@product, @user) do |f| %>
+<%= form_with model: [@product, @patron] do |f| %>
   <div class="field">
     <%= f.label :donation %>
     <%= f.number_field :donation, class:"form-control" %>
