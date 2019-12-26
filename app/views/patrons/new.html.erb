@@ -3,6 +3,10 @@
     <%= f.label :donation %>
     <%= f.number_field :donation, class:"form-control" %>
   </div>
+  <div class="field">
+    <%= f.label :datetime %>
+    <%= f.date_select :datetime, class:"form-control" %>
+  </div>
   <div class="actions">
     <%= f.submit class:"btn btn-primary" %>
   </div>

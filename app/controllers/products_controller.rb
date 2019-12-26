@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @rewards = @product.rewards
   end
 
   def draft
@@ -30,11 +31,13 @@ class ProductsController < ApplicationController
   end
 
   def patron
-    @product = Product.find(params[:id])
-    current_user.donation = (params[:donation])
+    @product = current_user.donated_products.find(params[:id])
+    @user = @product.funders.new(donation: params[:donation])
+    p current_user.donation = @user.donation
+    p current_user
     respond_to do |format|
       if current_user.save
-      format.html { redirect_to @product, notice: 'Product was successfully created.' }
+      format.html { redirect_to @product, notice: 'パトロンになりました.' }
       format.json { render :show, status: :created, location: @product }
       else
       format.html { render :new }
