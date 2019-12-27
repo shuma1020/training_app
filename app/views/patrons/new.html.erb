@@ -1,0 +1,11 @@
+<% if @product.patrons.empty? %>
+  <%= form_with model: [@product, @patrons] do |form| %>
+    <div class="field">
+      <%= form.label :donation %>
+      <%= form.number_field :donation, class:"form-control" %>
+    </div>
+    <%= form.submit class:"btn btn-primary" %>
+  <% end %>
+<% else %>
+  <p>すでにパトロンになっています</p>
+<% end %>

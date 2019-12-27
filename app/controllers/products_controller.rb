@@ -13,6 +13,10 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @rewards = @product.rewards
+    if @product.patrons.exists?
+      @patron = @product.patrons.find(1)
+    end
   end
 
   def draft

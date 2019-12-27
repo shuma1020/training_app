@@ -11,4 +11,6 @@ class User < ApplicationRecord
   def liked_for?(product)
     product && product.user != self && !likes.exists?(product_id: product.id)
   end
+  has_many :patrons
+  has_many :donated_products, through: :patrons, source: :product
 end

@@ -40,11 +40,13 @@
   <% end %>
   <%= link_to 'Back', products_path %>
 <br>
-
+<% if @product.patrons.exists? %>
+  <%= @patron.donation%>
+  <%= @patron.created_at%>
+<% else %>
+  <%= link_to "パトロンになる", new_product_patron_path(@product) %>
+<% end %>
 <div>
-  <span>(<%= .donation%>)</span>
-</div>
-
 <h1>Rewards</h1>
 
 <table>
@@ -72,3 +74,4 @@
     <% end %>
   </tbody>
 </table>
+</div>
