@@ -61,7 +61,7 @@
 
   <div class="donation">
     <% if @product.patrons.empty? %>
-      <%= form_with model: [@product, @patrons] do |form| %>
+      <%= form_with model: [@product, @patron] do |form| %>
         <div class="field">
           <%= form.label :金額 %>
           <%= form.number_field :donation, class:"form-control" %>

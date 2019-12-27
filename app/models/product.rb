@@ -4,6 +4,7 @@ class Product < ApplicationRecord
     validates :status, presence: true
     validates :title, presence: true
     validates :price, presence: true
+    validates :image, presence: true
     validates :description, presence: true
     enum status: {draft: 0, release:1}
     mount_uploader :image, ImageUploader
