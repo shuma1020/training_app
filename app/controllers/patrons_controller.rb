@@ -11,12 +11,12 @@ class PatronsController < ApplicationController
     @patron =@product.patrons.new(patron_params)
     @patron.user_id = current_user.id
     respond_to do |format|
-      if p @patron.save
+      if @patron.save
         format.html { redirect_to @product, notice: 'パトロンになりました' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: @product.errors, notice: '金額を入れてください' }
       end
     end
   end
