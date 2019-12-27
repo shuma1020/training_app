@@ -3,6 +3,7 @@ class PatronsController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
     @patrons =Patron.new
+    @rewards = @product.rewards
   end
 
   def create
