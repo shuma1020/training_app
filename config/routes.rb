@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get "draft"
       get "release"
     end
+    resources :patrons, only: [:index, :create]
     patch "like",  on: :member
   end
   devise_scope :user do
