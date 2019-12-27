@@ -1,48 +1,50 @@
 
-  <p class="main-title">
-    <%= @product.title %>
-  </p>
-  <div class="row">
+<p class="main-title">
+  <%= @product.title %>
+</p>
+<div class="row">
 
-  <div class="col-sm-7">
-  <% if @product.image? %>
-      <div class="thumb">
-        <%= image_tag @product.image.url,class:"img-thumbnail ", alt:"Responsive image"%>
-      </div>
-  <% end %>
-  </div>
-  <div class="col-sm-3">
-  <strong>目標金額</strong>
-  <p class="show-title">
-    <%= @product.price %>
-  </p>
-
-
-  <strong>概要</strong>
-  <p class="show-title">
-    <%= @product.description %>
-  </p>
+<div class="col-sm-7">
+<% if @product.image? %>
+    <div class="thumb">
+      <%= image_tag @product.image.url,class:"img-thumbnail ", alt:"Responsive image"%>
+    </div>
+<% end %>
+</div>
+<div class="col-sm-3">
+<strong>目標金額</strong>
+<p class="show-title">
+  <%= @product.price %>
+</p>
 
 
-  <strong>状態</strong>
-  <p class="show-title">
-    <%= @product.status %>
-  </p>
+<strong>概要</strong>
+<p class="show-title">
+  <%= @product.description %>
+</p>
 
 
-  <strong>メッセージ</strong>
-  <p class="show-title">
-    <%= @product.message %>
-  </p>
-  </div>
-  <% if current_user.liked_for?(@product)%>
-    <%=link_to "★いいね", [:like, @product], method: :patch %>
-  <% end %>
-  <%= link_to 'Back', products_path %>
+<strong>状態</strong>
+<p class="show-title">
+  <%= @product.status %>
+</p>
+
+
+<strong>メッセージ</strong>
+<p class="show-title">
+  <%= @product.message %>
+</p>
+</div>
+<% if current_user.liked_for?(@product)%>
+  <%=link_to "★いいね", [:like, @product], method: :patch %>
+<% end %>
+<%= link_to 'Back', products_path %>
 <br>
 <% if @product.patrons.exists? %>
-  <%= @patron.donation%>
-  <%= @patron.created_at%>
+  <% @product.patrons.each do |patron| %>
+    <%= patron.donation %>
+    <%= patron.created_at %>
+  <% end %>
 <% else %>
   <%= link_to "パトロンになる", new_product_patron_path(@product) %>
 <% end %>

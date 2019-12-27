@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
   def show
     @rewards = @product.rewards
     if @product.patrons.exists?
-      @patron = @product.patrons.find(1)
+      @patrons = @product.patrons.all
     end
   end
 
