@@ -8,8 +8,7 @@ class PatronsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     @patron =@product.patrons.new(patron_params)
-    p @patron.user_id = current_user.id
-    p "##999999"
+    @patron.user_id = current_user.id
     respond_to do |format|
       if p @patron.save
         format.html { redirect_to @product, notice: 'パトロンになりました' }

@@ -3,77 +3,79 @@
   <%= @product.title %>
 </p>
 <div class="row">
-
-<div class="col-sm-7">
-<% if @product.image? %>
-    <div class="thumb">
-      <%= image_tag @product.image.url,class:"img-thumbnail ", alt:"Responsive image"%>
-    </div>
-<% end %>
-</div>
-<div class="col-sm-3">
-<strong>目標金額</strong>
-<p class="show-title">
-  <%= @product.price %>
-</p>
-
-
-<strong>概要</strong>
-<p class="show-title">
-  <%= @product.description %>
-</p>
-
-
-<strong>状態</strong>
-<p class="show-title">
-  <%= @product.status %>
-</p>
-
-
-<strong>メッセージ</strong>
-<p class="show-title">
-  <%= @product.message %>
-</p>
-</div>
-<% if current_user.liked_for?(@product)%>
-  <%=link_to "★いいね", [:like, @product], method: :patch %>
-<% end %>
-<%= link_to 'Back', products_path %>
-<br>
-<% if @product.patrons.exists? %>
-  <% @product.patrons.each do |patron| %>
-    <%= patron.donation %>
-    <%= patron.created_at %>
-  <% end %>
-<% else %>
-  <%= link_to "パトロンになる", new_product_patron_path(@product) %>
-<% end %>
-<div>
-<h1>Rewards</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Product</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @rewards.each do |reward| %>
-      <tr>
-        <td><%= reward.title %></td>
-        <td><%= reward.description %></td>
-        <td><%= reward.price %></td>
-        <td><%= reward.product_id %></td>
-        <td><%= reward.user_id %></td>
-        <td><%= link_to 'Show', mypage_product_reward_path(@product, reward) %></td>
-        <td><%= link_to 'Edit', edit_mypage_product_reward_path(@product, reward) %></td>
-        <td><%= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <div class="col-sm-7">
+    <% if @product.image? %>
+      <div class="thumb">
+        <%= image_tag @product.image.url,class:"img-thumbnail ", alt:"Responsive image"%>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <div class="col-sm-3">
+    <strong>目標金額</strong>
+    <p class="show-title">
+      <%= @product.price %>
+    </p>
+    <strong>概要</strong>
+    <p class="show-title">
+      <%= @product.description %>
+    </p>
+    <strong>状態</strong>
+    <p class="show-title">
+      <%= @product.status %>
+    </p>
+    <strong>メッセージ</strong>
+    <p class="show-title">
+      <%= @product.message %>
+    </p>
+  </div>
+  <% if current_user.liked_for?(@product)%>
+    <%=link_to "★いいね", [:like, @product], method: :patch %>
+  <% end %>
+  <%= link_to 'Back', products_path %>
+</div>
+<div class="patron_message">
+  <% if @product.patrons.exists? %>
+    <% if current_user.id != @product.user_id %>
+      <% @product.patrons.each do |patron| %>
+      　<p><%= patron.created_at.strftime("%m月%d日") %>からパトロンです(<%= patron.donation %>円)</p>
+      <% end %>
+    <% else %>
+      <p>Your Product</p>
+    <% end %>
+  <% else %>
+    <% if current_user.id != @product.user_id %>
+      <%= link_to "パトロンになる", new_product_patron_path(@product) %>
+    <% else %>
+      <p>Your Product</p>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="reward">
+  <h1>Rewards</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Product</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rewards.each do |reward| %>
+        <tr>
+          <td><%= reward.title %></td>
+          <td><%= reward.description %></td>
+          <td><%= reward.price %></td>
+          <td><%= reward.product_id %></td>
+          <td><%= reward.user_id %></td>
+          <td><%= link_to 'Show', mypage_product_reward_path(@product, reward) %></td>
+          <td><%= link_to 'Edit', edit_mypage_product_reward_path(@product, reward) %></td>
+          <td><%= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
