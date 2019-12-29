@@ -8,7 +8,7 @@ class PatronsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-    @patron =@product.patrons.new(patron_params)
+    @patron = @product.patrons.new(patron_params)
     @patron.user_id = current_user.id
     respond_to do |format|
       if @patron.save
