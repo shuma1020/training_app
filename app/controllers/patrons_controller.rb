@@ -2,7 +2,7 @@ class PatronsController < ApplicationController
 
   def new
     @product = Product.find(params[:product_id])
-    @patron =Patron.new
+    @patron = Patron.new
     @rewards = @product.rewards
   end
 
