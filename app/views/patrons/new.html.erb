@@ -61,19 +61,8 @@
 
   <div class="donation">
     <% if @product.patrons.empty? %>
-      <%= form_with model: [@product, @patron] do |form| %>
+      <%= form_with model: [@product, @patron], local: true do |form| %>
         <div class="field">
-        <% if @product.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
-            <ul>
-              <% product.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
           <%= form.label :金額 %>
           <%= form.number_field :donation, class:"form-control" %>
         </div>
@@ -82,5 +71,18 @@
     <% else %>
       <p>すでにパトロンになっています</p>
     <% end %>
+
+    <% if @patron.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@patron.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+        <ul>
+          <% @patron.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
   </div>
 </div>
