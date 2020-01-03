@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
     has_many :rewards
+    accepts_nested_attributes_for :rewards
     belongs_to :user
     validates :status, presence: true
     validates :title, presence: true
@@ -12,4 +13,8 @@ class Product < ApplicationRecord
     has_many :likeres, through: :likes, source: :user
     has_many :patrons
     has_many :funders, through: :patrons, source: :user
+    validate :require_any_rewards
+    def require_any_rewards
+        errors.add(:base, "rewardを入れてください") if rewards.blank?
+    end
 end
