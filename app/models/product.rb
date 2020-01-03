@@ -10,5 +10,8 @@ class Product < ApplicationRecord
     mount_uploader :image, ImageUploader
     has_many :likes, dependent: :destroy
     has_many :likeres, through: :likes, source: :user
-    
+    validate :require_any_rewards
+    def require_any_rewards
+        errors.add(:base, "rewardを入れてください") if rewards.blank?
+    end
 end

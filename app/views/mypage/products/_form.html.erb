@@ -58,21 +58,23 @@
     <%= form.text_area :message, class:"form-control" %>
   </div>
 
-  <%= form.fields_for :address do |f| %>
+  <%= form.fields_for :rewards do |f| %>
     <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title, class:"form-control" %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class:"form-control" %>
     </div>
 
     <div class="field">
-      <%= form.label :description %>
-      <%= form.text_area :description, class:"form-control" %>
+      <%= f.label :description %>
+      <%= f.text_area :description, class:"form-control" %>
     </div>
 
     <div class="field">
-      <%= form.label :price %>
-      <%= form.number_field :price, class:"form-control" %>
+      <%= f.label :price %>
+      <%= f.number_field :price, class:"form-control" %>
     </div>
+
+    <%= f.submit class:"btn btn-primary" %>
 
     <% end %>
 
