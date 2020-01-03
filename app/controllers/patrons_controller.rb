@@ -11,7 +11,7 @@ class PatronsController < ApplicationController
     @rewards = @product.rewards
     @patron = @product.patrons.new(patron_params)
     @patron.user_id = current_user.id
-      respond_to do |format|
+    respond_to do |format|
       if @patron.save
         format.html { redirect_to @product, notice: 'パトロンになりました' }
         format.json { render :show, status: :created, location: @product }

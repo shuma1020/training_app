@@ -60,7 +60,7 @@
   </div>
 
   <div class="donation">
-    <% if @product.patrons.empty? %>
+    <% unless @product.patrons.exists? %>
       <%= form_with model: [@product, @patron], local: true do |form| %>
         <div class="field">
           <%= form.label :金額 %>
