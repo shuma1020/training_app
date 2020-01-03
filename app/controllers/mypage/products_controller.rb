@@ -6,6 +6,7 @@ class Mypage::ProductsController < ApplicationController
 
     def new
         @product = current_user.products.new
+        @product.rewards.build
     end
 
     def edit
@@ -21,6 +22,7 @@ class Mypage::ProductsController < ApplicationController
     end
 
     def create
+        p product_params
         @product = current_user.products.new(product_params)
         respond_to do |format|
             if @product.save
@@ -65,7 +67,8 @@ class Mypage::ProductsController < ApplicationController
 
     private
     def product_params
-        params.require(:product).permit(:title, :price, :description, :message, :status, :user_id, :image, :image_cache, :remove_image)
+        p "#####"
+        p params.require(:product).permit(:title, :price, :description, :message, :status, :user_id, :image, :image_cache, :remove_image, rewards_attributes: [:title, :description, :price, :product_id, :user_id])
     end
 
     def set_product
