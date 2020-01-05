@@ -15,7 +15,8 @@ class ProductsController < ApplicationController
   def show
     @rewards = @product.rewards
     @patrons = @product.patrons.all
-    @patron = Patron.find_by(user_id: current_user, product_id: params[:id])
+    p "3333"
+    p @patron = Patron.find_by(user_id: current_user, product_id: params[:id])
   end
 
   def draft

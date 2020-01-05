@@ -60,16 +60,12 @@
   </div>
 
   <div class="donation">
-    <% unless @product.patrons.exists? %>
-      <%= form_with model: [@product, @patron], local: true do |form| %>
-        <div class="field">
-          <%= form.label :金額 %>
-          <%= form.number_field :donation, class:"form-control" %>
-        </div>
-        <%= form.submit class:"btn btn-primary" %>
-      <% end %>
-    <% else %>
-      <p>すでにパトロンになっています</p>
+    <%= form_with model: [@product, @patron], local: true do |form| %>
+      <div class="field">
+        <%= form.label :金額 %>
+        <%= form.number_field :donation, class:"form-control" %>
+      </div>
+      <%= form.submit class:"btn btn-primary" %>
     <% end %>
 
     <% if @patron.errors.any? %>
