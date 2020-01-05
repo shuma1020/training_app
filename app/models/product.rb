@@ -5,11 +5,14 @@ class Product < ApplicationRecord
     validates :status, presence: true
     validates :title, presence: true
     validates :price, presence: true
+    validates :image, presence: true
     validates :description, presence: true
     enum status: {draft: 0, release:1}
     mount_uploader :image, ImageUploader
     has_many :likes, dependent: :destroy
     has_many :likeres, through: :likes, source: :user
+    has_many :patrons
+    has_many :funders, through: :patrons, source: :user
     validate :require_any_rewards
     def require_any_rewards
         errors.add(:base, "rewardを入れてください") if rewards.blank?
