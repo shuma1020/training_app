@@ -34,19 +34,13 @@
   <%= link_to 'Back', products_path %>
 </div>
 <div class="patron_message">
-  <% if @product.patrons.exists? %>
-    <% if current_user.id != @product.user_id %>
-      <% @product.patrons.each do |patron| %>
-      　<p><%= patron.created_at.strftime("%m月%d日") %>からパトロンです(<%= patron.donation %>円)</p>
-      <% end %>
-    <% else %>
-      <p>Your Product</p>
-    <% end %>
+  <% unless @patron.nil? %>
+    <p><%= @patron.created_at.strftime("%m月%d日") %>からパトロンです(<%= @patron.donation %>円)</p>
   <% else %>
-    <% if current_user.id != @product.user_id %>
-        <%= link_to "パトロンになる", new_product_patron_path(@product), class:"btn btn-secondary" %>
-    <% else %>
+    <% if @product.user_id == current_user.id %>
       <p>Your Product</p>
+    <% else %>
+      <%= link_to "パトロンになる", new_product_patron_path(@product), class:"btn btn-secondary" %>
     <% end %>
   <% end %>
 </div>
