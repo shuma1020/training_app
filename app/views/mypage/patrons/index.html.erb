@@ -1,0 +1,7 @@
+<% @patrons.each do |patron| %>
+<div>
+<p><%=patron.product.title%></p>
+<p><%= patron.created_at.strftime("at %I:%M%p") %></p>
+<p><%= patron.donation %>円</p>
+</div>
+<%end%>
