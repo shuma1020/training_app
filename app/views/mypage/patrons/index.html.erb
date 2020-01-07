@@ -1,14 +1,10 @@
 <% @patrons.each do |patron| %>
-  <div class="card mb-3" style="max-width: 500px;">
-    <div class="row no-gutters">
-      <div class="col-lg-6">
-        <h5 class="card-title"><%=patron.product.title%></h5>
-      </div>
-      <div class="col-lg-6">
-        <div class="card-body">
-          <p class="card-text"><%= patron.created_at.strftime("at %I:%M%p") %></p>
-          <p class="card-text"><%= patron.donation %>円</p>
-        </div>
+  <div class="card mb-3" >
+    <div class="row">
+      <h5 class="col-sm-6"><%=patron.product.title%></h5>
+      <div class="col-sm-6">
+        <p ><%= patron.created_at.strftime("at %I:%M%p") %></p>
+        <p ><%= patron.donation %>円</p>
       </div>
     </div>
   </div>

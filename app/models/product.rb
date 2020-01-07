@@ -13,8 +13,16 @@ class Product < ApplicationRecord
     has_many :likeres, through: :likes, source: :user
     has_many :patrons
     has_many :funders, through: :patrons, source: :user
+    validate :require_any_rewards, if: :product_status?
     def require_any_rewards
         errors.add(:base, "Rewardを入れてください") if rewards.blank?
     end
+    with_options if: :product_status? do
+        return true if @product.status == "release"
+        false
+    end
+    
+    def product_status?
 
+    end
 end
