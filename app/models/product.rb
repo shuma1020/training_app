@@ -17,12 +17,7 @@ class Product < ApplicationRecord
     def require_any_rewards
         errors.add(:base, "Rewardを入れてください") if rewards.blank?
     end
-    with_options if: :product_status? do
-        return true if @product.status == "release"
-        false
-    end
-    
     def product_status?
-
+        return true if self.status == "release"
     end
 end

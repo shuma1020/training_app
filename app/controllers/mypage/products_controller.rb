@@ -66,7 +66,7 @@ class Mypage::ProductsController < ApplicationController
 
     private
     def product_params
-        p params.require(:product).permit(:title, :price, :description, :message, :status, :user_id, :image, :image_cache, :remove_image, rewards_attributes: [:title, :description, :price, :product_id, :user_id])
+        params.require(:product).permit(:title, :price, :description, :message, :status, :user_id, :image, :image_cache, :remove_image, rewards_attributes: [:title, :description, :price, :product_id, :user_id])
     end
 
     def set_product
