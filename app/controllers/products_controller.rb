@@ -23,8 +23,6 @@ class ProductsController < ApplicationController
         @rewards = @product.rewards
       end
     else
-
-      p "33333"
       @rewards = @product.rewards
     end
   end
