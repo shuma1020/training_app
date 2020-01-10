@@ -3,4 +3,5 @@ class Reward < ApplicationRecord
     validates :title, presence: true
     validates :price, presence: true
     validates :description, presence: true
+    has_many :patrons
 end
