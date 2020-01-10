@@ -12,7 +12,8 @@ class PatronsController < ApplicationController
     @patron = @product.patrons.new(patron_params)
     @patron.user_id = current_user.id
     respond_to do |format|
-      if @patron.save
+      if @patron.donation >= @rewards.maximum(:price)
+      if @reward.patron.save
         format.html { redirect_to @product, notice: 'パトロンになりました' }
         format.json { render :show, status: :created, location: @product }
       else
