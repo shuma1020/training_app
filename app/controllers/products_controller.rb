@@ -13,9 +13,14 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @rewards = @product.rewards
     @patrons = @product.patrons.all
     @patron = current_user.patrons.find_by(product: @product)
+    if @patron.reward
+      @rewards = @product.rewards
+      @rewards << @patron.reward
+    else
+      @rewards = @product.rewards
+    end
   end
 
   def draft
