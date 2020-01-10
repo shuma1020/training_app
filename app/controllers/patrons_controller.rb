@@ -13,30 +13,18 @@ class PatronsController < ApplicationController
     @rewards = @product.rewards
     respond_to do |format|
       if @rewards.size >= 3
-        if @patron.donation >= @rewards.maximum(:price)
-          @reward = @rewards.find_by(price: @rewards.maximum(:price))
-          @patron.reward_id= @reward.id
-          if @patron.save
+        @reward = @rewards.find_by(price: @rewards.maximum(:price))
+        @patron.reward_id = @reward.id
+        if @patron.save
+          if @patron.donation >= @rewards.maximum(:price)
             format.html { redirect_to @product, notice: 'パトロンになりました' }
             format.json { render :show, status: :created, location: @product }
-          else
-            format.html { render :new }
-            format.json { render json: @patron.errors, status: :unprocessable_entity }
-          end
-        elsif @rewards.median(:price) <= @patron.donation && @patron.donation < @rewards.maximum(:price)
-          @reward = @rewards.find_by(price: @rewards.median(:price))
-          @patron.reward_id= @reward.id
-          if @patron.save
+          elsif @rewards.median(:price) <= @patron.donation && @patron.donation < @rewards.maximum(:price)
+            @reward = @rewards.find_by(price: @rewards.median(:price))
             format.html { redirect_to @product, notice: 'パトロンになりました' }
             format.json { render :show, status: :created, location: @product }
-          else
-            format.html { render :new }
-            format.json { render json: @patron.errors, status: :unprocessable_entity }
-          end
-        elsif  @patron.donation < @rewards.median(:price) && @patron.donation > @rewards.minimum(:price)
-          @reward = @rewards.find_by(price: @rewards.minimum(:price))
-          @patron.reward_id= @reward.id
-          if @patron.save
+          elsif  @patron.donation < @rewards.median(:price) && @patron.donation > @rewards.minimum(:price)
+            @reward = @rewards.find_by(price: @rewards.minimum(:price))
             format.html { redirect_to @product, notice: 'パトロンになりました' }
             format.json { render :show, status: :created, location: @product }
           else
@@ -48,43 +36,40 @@ class PatronsController < ApplicationController
           format.json { render json: @patron.errors, status: :unprocessable_entity }
         end
       elsif 2 == @rewards.size
-        if @patron.donation >= @rewards.maximum(:price)
-          @reward = @rewards.find_by(price: @rewards.maximum(:price))
-          @patron.reward_id= @reward.id
-          if @patron.save
-            format.html { redirect_to @product, notice: 'パトロンになりました' }
-            format.json { render :show, status: :created, location: @product }
+          if @patron.donation != nil && @patron.donation >= @rewards.maximum(:price)
+            @reward = @rewards.find_by(price: @rewards.maximum(:price))
+            @patron.reward_id = @reward.id
+            if @patron.save
+              format.html { redirect_to @product, notice: 'パトロンになりました' }
+              format.json { render :show, status: :created, location: @product }
+            else
+              format.html { render :new }
+              format.json { render json: @patron.errors, status: :unprocessable_entity }
+            end
+          elsif @patron.donation != nil && @rewards.minimum(:price) <= @patron.donation && @patron.donation < @rewards.maximum(:price)
+            @reward = @rewards.find_by(price: @rewards.minimum(:price))
+            @patron.reward_id = @reward.id
+            if @patron.save
+              format.html { redirect_to @product, notice: 'パトロンになりました' }
+              format.json { render :show, status: :created, location: @product }
+            else
+              format.html { render :new }
+              format.json { render json: @patron.errors, status: :unprocessable_entity }
+            end
           else
+            flash[:alert] = "最低金額に達していません"
             format.html { render :new }
-            format.json { render json: @patron.errors, status: :unprocessable_entity }
           end
-        elsif  @patron.donation < @rewards.median(:price) && @patron.donation > @rewards.minimum(:price)
-          @reward = @rewards.find_by(price: @rewards.minimum(:price))
-          @patron.reward_id= @reward.id
-          if @patron.save
-            format.html { redirect_to @product, notice: 'パトロンになりました' }
-            format.json { render :show, status: :created, location: @product }
-          else
-            format.html { render :new }
-            format.json { render json: @patron.errors, status: :unprocessable_entity }
-          end
+
+      else
+        @reward = @rewards.find_by(price: @rewards.minimum(:price))
+        @patron.reward_id = @reward.id
+        if @patron.save
+          format.html { render :new }
+          format.json { render json: @patron.errors, status: :unprocessable_entity }
         else
           format.html { render :new }
           format.json { render json: @patron.errors, status: :unprocessable_entity }
-        end
-      else
-        if @patron.donation >= @rewards.maximum(:price)
-          @reward = @rewards.find_by(price: @rewards.maximum(:price))
-          @patron.reward_id= @reward.id
-          if @patron.save
-            format.html { redirect_to @product, notice: 'パトロンになりました' }
-            format.json { render :show, status: :created, location: @product }
-          else
-            format.html { render :new }
-            format.json { render json: @patron.errors, status: :unprocessable_entity }
-          end
-        else
-          format.html { render :new }
         end
       end
     end
@@ -94,5 +79,4 @@ class PatronsController < ApplicationController
     def patron_params
       params.require(:patron).permit(:donation, :user_id, :product_id, :reward_id)
     end
-
 end
