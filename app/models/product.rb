@@ -18,8 +18,6 @@ class Product < ApplicationRecord
         errors.add(:base, "Rewardを入れてください") if rewards.blank?
     end
     def status_released?
-        if self.status == "release"
-            true
-        end
+        return if self.status == "release"
     end
 end

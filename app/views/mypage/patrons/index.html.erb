@@ -1,6 +1,6 @@
 <% @patrons.each do |patron| %>
-  <div class="card mb-3" >
-    <div class="row">
+  <div class="card mb-2" >
+    <div class="row ml-2 mt-3">
       <h5 class="col-sm-6"><%=patron.product.title%></h5>
       <div class="col-sm-6">
         <p ><%= patron.created_at.strftime("at %I:%M%p") %></p>
