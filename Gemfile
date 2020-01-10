@@ -36,6 +36,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'enum_help'
 gem 'carrierwave'
 gem 'rails-i18n'
+gem 'active_median'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
