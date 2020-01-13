@@ -22,6 +22,7 @@ class PatronsController < ApplicationController
         format.html { redirect_to @product, notice: 'パトロンになりました' }
         format.json { render :show, status: :created, location: @product }
       else
+        @rewards = @product.rewards
         format.html { render :new }
         format.json { render json: @patron.errors, status: :unprocessable_entity }
       end
