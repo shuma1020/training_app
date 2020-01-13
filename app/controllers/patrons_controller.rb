@@ -2,7 +2,7 @@ class PatronsController < ApplicationController
 
   def new
     @product = Product.find(params[:product_id])
-    @patron = Patron.new
+    @patron = @product.patrons.new
     @rewards = @product.rewards
   end
 
@@ -18,6 +18,7 @@ class PatronsController < ApplicationController
         format.html { redirect_to @product, notice: 'パトロンになりました' }
         format.json { render :show, status: :created, location: @product }
       else
+        p "####l"
         format.html { render :new }
         format.json { render json: @patron.errors, status: :unprocessable_entity }
       end
