@@ -15,16 +15,8 @@ class ProductsController < ApplicationController
   def show
     @patrons = @product.patrons.all
     @patron = current_user.patrons.find_by(product: @product)
-    if @patron
-      if @patron.reward
-        @rewards = @product.rewards
-        @rewards << @patron.reward
-      else
-        @rewards = @product.rewards
-      end
-    else
-      @rewards = @product.rewards
-    end
+    @rewards = @product.rewards
+    @reward = @patron.reward
   end
 
   def draft
