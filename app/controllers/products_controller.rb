@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
     end
 
     def user_check
-      unless user_signed_in? && @product.user_id == current_user.id
+      unless user_signed_in? && @product.owner?(current_user)
         flash[:alert] = "編集権限がありません"
         redirect_to root_path
       end

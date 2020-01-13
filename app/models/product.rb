@@ -20,4 +20,7 @@ class Product < ApplicationRecord
     def status_released?
         self.status == "release"
     end
+    def owner?(user)
+        self.user_id == user.id
+    end
 end

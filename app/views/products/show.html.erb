@@ -35,7 +35,7 @@
 </div>
 <div class="patron_message">
   <% if @patron.nil? %>
-    <% if @product.user_id == current_user.id %>
+    <% if @product.owner?(current_user) %>
       <p>Your Product</p>
     <% else %>
       <%= link_to "パトロンになる", new_product_patron_path(@product), class:"btn btn-secondary" %>
