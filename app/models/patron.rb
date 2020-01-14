@@ -10,6 +10,11 @@ class Patron < ApplicationRecord
   end
 
   def donation_check
-    self.donation < reward.price && self.donation != nil
+    if self.donation != nil
+    reward = product.rewards.order(price: :desc).last
+    self.donation < reward.price
+    else
+      return false
+    end
   end
 end
