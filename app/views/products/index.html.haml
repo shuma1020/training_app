@@ -1,36 +1,36 @@
 
 
 - if user_signed_in?
-    = link_to "ログアウト", destroy_user_session_path, method: :delete
-        %div.r
-            - @products.each do |product|
-                %div.col-sm-6
-                    %div.card
-                        .card-body
-                            %h3{class:"card-title"}= product.title
-                            %div.row
-                                .col
-                                    %span{scope:"col"} 価格
-                                    %h6.card-text= product.price
-                                    %span{scope:"col"} 詳細
-                                    %h6{class:"card-text"}= product.description
-                                    %span{scope:"col"} 状態
-                                    %h6{class:"card-text"}= product.status
-                                    %span{scope:"col"} メッセージ
-                                    %h6{class:"card-text"}= product.message
-                                    %span{scope:"col"} メール
-                                    %h6{class:"card-text"}= product.user.email
-                                    %span{scope:"col"} お返し
-                                    - product.rewards.each do |reward|
-                                        %h6= reward.title
+= link_to "ログアウト", destroy_user_session_path, method: :delete
+    %div.r
+        - @products.each do |product|
+            %div.col-sm-6
+                %div.card
+                    .card-body
+                        %h3{class:"card-title"}= product.title
+                        %div.row
+                            .col
+                                %span{scope:"col"} 価格
+                                %h6.card-text= product.price
+                                %span{scope:"col"} 詳細
+                                %h6{class:"card-text"}= product.description
+                                %span{scope:"col"} 状態
+                                %h6{class:"card-text"}= product.status
+                                %span{scope:"col"} メッセージ
+                                %h6{class:"card-text"}= product.message
+                                %span{scope:"col"} メール
+                                %h6{class:"card-text"}= product.user.email
+                                %span{scope:"col"} お返し
+                                - product.rewards.each do |reward|
+                                    %h6= reward.title
 
-                                %div{class:"col"}
-                                    - if product.image?
-                                        %div.thumbnail
-                                        =image_tag product.image.url, class:"img-fluid", alt:"Responsive image"
+                            %div{class:"col"}
+                                - if product.image?
+                                    %div.thumbnail
+                                    =image_tag product.image.url, class:"img-fluid", alt:"Responsive image"
 
-                                %div#list_index
-                                    %span = link_to 'Show', product
+                            %div#list_index
+                                %span= link_to 'Show', product
 
 
 
