@@ -35,7 +35,7 @@
 </div>
 <div class="patron_message">
   <% if @patron.nil? %>
-    <% if @product.user_id == current_user.id %>
+    <% if @product.owner?(current_user) %>
       <p>Your Product</p>
     <% else %>
       <%= link_to "パトロンになる", new_product_patron_path(@product), class:"btn btn-secondary" %>
@@ -59,6 +59,31 @@
     </thead>
     <tbody>
       <% @rewards.each do |reward| %>
+      <% if @patron %>
+        <% if reward == @patron.reward %>
+          <tr style="color:red">
+            <td><%= reward.title %></td>
+            <td><%= reward.description %></td>
+            <td><%= @patron.reward.price %></td>
+            <td><%= reward.product_id %></td>
+            <td><%= reward.user_id %></td>
+            <td><%= link_to 'Show', mypage_product_reward_path(@product, reward) %></td>
+            <td><%= link_to 'Edit', edit_mypage_product_reward_path(@product, reward) %></td>
+            <td><%= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% else %>
+        <tr>
+            <td><%= reward.title %></td>
+            <td><%= reward.description %></td>
+            <td><%= reward.price %></td>
+            <td><%= reward.product_id %></td>
+            <td><%= reward.user_id %></td>
+            <td><%= link_to 'Show', mypage_product_reward_path(@product, reward) %></td>
+            <td><%= link_to 'Edit', edit_mypage_product_reward_path(@product, reward) %></td>
+            <td><%= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% else %>
         <tr>
           <td><%= reward.title %></td>
           <td><%= reward.description %></td>
@@ -69,6 +94,7 @@
           <td><%= link_to 'Edit', edit_mypage_product_reward_path(@product, reward) %></td>
           <td><%= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
+      <% end %>
       <% end %>
     </tbody>
   </table>

@@ -13,8 +13,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @rewards = @product.rewards
     @patrons = @product.patrons.all
+    @rewards = @product.rewards
     @patron = current_user.patrons.find_by(product: @product)
   end
 
@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
     end
 
     def user_check
-      unless user_signed_in? && @product.user_id == current_user.id
+      unless user_signed_in? && @product.owner?(current_user)
         flash[:alert] = "編集権限がありません"
         redirect_to root_path
       end
