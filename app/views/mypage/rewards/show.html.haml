@@ -1,0 +1,26 @@
+
+%p
+  %strong Title:
+  = @reward.title
+
+
+%p
+  %strong Description:
+  = @reward.description
+
+
+%p
+  %strong Price:
+  = @reward.price
+
+
+%p
+  %strong Product:
+  = @reward.product_id
+
+%p
+  %strong Product:
+  = @reward.user_id
+
+=link_to 'Edit', edit_mypage_product_reward_path(@product, @reward)  |
+=link_to 'Back', mypage_product_path(@product)

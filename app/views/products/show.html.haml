@@ -30,7 +30,9 @@
     - else
       = link_to "パトロンになる", new_product_patron_path(@product), class:"btn btn-secondary"
   - else
-    %p = @patron.created_at.strftime("%m月%d日") %>からパトロンです(<%= @patron.donation %>円)
+    %p
+    = @patron.created_at.strftime("%m月%d日")
+    からパトロンです(#{@patron.donation}円)
 
 %div.reward
   %h1 リターンを選ぶ
