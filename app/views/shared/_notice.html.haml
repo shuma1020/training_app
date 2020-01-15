@@ -1,0 +1,6 @@
+- if notice.present?
+  .alert.alert-info{:role => "alert"}
+    = notice
+- if flash[:alert]
+  .alert.alert-danger
+    = flash[:alert]

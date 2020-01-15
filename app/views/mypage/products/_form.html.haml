@@ -1,0 +1,41 @@
+= form_with(model: [:mypage, product], local: true) do |form|
+  .form-group
+    - if product.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(product.errors.count, "error")
+          prohibited this product from being saved:
+        %ul
+          - product.errors.full_messages.each do |message|
+            %li= message
+    .field
+      = form.label :title
+      = form.text_field :title, class:"form-control"
+    .field
+      - if product.image?
+        .thumbnail
+          = image_tag product.image.url,class:"img-thumbnail"
+      %br/
+      = form.label :image
+      %br/
+      = form.file_field :image
+      = form.hidden_field :image_cache
+    .field
+      / 既存レコード(DBに保存されている)かつ、画像が存在する場合
+      - if @product.persisted? && @product.image?
+        %label
+          = form.check_box :remove_image
+          画像を削除
+    .field
+      = form.label :price
+      = form.number_field :price, class:"form-control"
+    .field
+      = form.label :description
+      = form.text_area :description, class:"form-control"
+    .field
+      = form.label :status
+      = form.select :status, Product.statuses.keys,class:"form-control"
+    .field
+      = form.label :message
+      = form.text_area :message, class:"form-control"
+    = form.submit class:"btn btn-primary"
