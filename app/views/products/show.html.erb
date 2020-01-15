@@ -59,42 +59,20 @@
     </thead>
     <tbody>
       <% @rewards.each do |reward| %>
-        <% if @patron %>
-          <% if reward == @patron.reward %>
-            <tr>
-              <td  style="color:red"><%= reward.title %></td>
-              <td><%= reward.description %></td>
-              <td><%= @patron.reward.price %></td>
-              <td><%= reward.product_id %></td>
-              <td><%= reward.user_id %></td>
-              <td><%= link_to 'Show', mypage_product_reward_path(@product, reward) %></td>
-              <td><%= link_to 'Edit', edit_mypage_product_reward_path(@product, reward) %></td>
-              <td><%= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
+        <tr>
+          <% if @patron && reward == @patron.reward %>
+            <td  style="color:red"><%= reward.title %></td>
           <% else %>
-          <tr>
-              <td><%= reward.title %></td>
-              <td><%= reward.description %></td>
-              <td><%= reward.price %></td>
-              <td><%= reward.product_id %></td>
-              <td><%= reward.user_id %></td>
-              <td><%= link_to 'Show', mypage_product_reward_path(@product, reward) %></td>
-              <td><%= link_to 'Edit', edit_mypage_product_reward_path(@product, reward) %></td>
-              <td><%= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-        <% else %>
-          <tr>
             <td><%= reward.title %></td>
-            <td><%= reward.description %></td>
-            <td><%= reward.price %></td>
-            <td><%= reward.product_id %></td>
-            <td><%= reward.user_id %></td>
-            <td><%= link_to 'Show', mypage_product_reward_path(@product, reward) %></td>
-            <td><%= link_to 'Edit', edit_mypage_product_reward_path(@product, reward) %></td>
-            <td><%= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
+          <% end %>
+          <td><%= reward.description %></td>
+          <td><%= reward.price %></td>
+          <td><%= reward.product_id %></td>
+          <td><%= reward.user_id %></td>
+          <td><%= link_to 'Show', mypage_product_reward_path(@product, reward) %></td>
+          <td><%= link_to 'Edit', edit_mypage_product_reward_path(@product, reward) %></td>
+          <td><%= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>
