@@ -1,0 +1,16 @@
+%nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+  = link_to 'クラウドファンディング', root_path, class:"navbar-brand"
+  - if user_signed_in?
+    %ul.navbar-nav.mr-auto
+      - if request.path.include?("mypage")
+        %li.nav-item.active
+          = link_to 'プロジェクトを作成する', new_mypage_product_path, class:"nav-link"
+        %li.nav-item.active
+          = link_to 'いいねした一覧', liked_mypage_products_path, class:"nav-link"
+      %li.nav-item.active
+        = link_to_unless_current '下書きのみ', draft_products_path, class:"nav-link"
+      %li.nav-item.active
+        = link_to_unless_current '公開', release_products_path, class:"nav-link"
+      - if current_user
+        %li.nav-item.active
+          = link_to_unless_current 'マイページ', mypage_products_path, class:"nav-link"

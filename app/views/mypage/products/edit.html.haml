@@ -1,0 +1,4 @@
+%h1 Editing Product
+- if user_signed_in? && @product.owner?(current_user)
+  = render 'form', product: @product
+= link_to 'Back', mypage_product_path

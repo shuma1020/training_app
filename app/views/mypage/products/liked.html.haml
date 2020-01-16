@@ -1,0 +1,9 @@
+%table.table.table-borderless
+  %thead.thead-dark
+    %tr
+      %th{:scope => "col"} いいねしたプロジェクト
+  %tbody
+    - @products.each do |product|
+      %tr
+        %td= product.title
+        %td= link_to "削除する", [:unlike_mypage, product], method: :patch, data: {confirm: "削除しますか？"}

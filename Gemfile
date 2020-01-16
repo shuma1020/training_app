@@ -36,6 +36,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'enum_help'
 gem 'carrierwave'
 gem 'rails-i18n'
+gem 'haml-rails'
 
 
 group :development, :test do

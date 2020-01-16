@@ -1,0 +1,9 @@
+- @patrons.each do |patron|
+  .card.mb-2
+    .row.ml-2.mt-3
+      %h5.col-sm-6= patron.product.title
+      .col-sm-6
+        %p= patron.created_at.strftime("at %I:%M%p")
+        %p
+          = patron.donation
+          円
