@@ -10,6 +10,12 @@ class PatronMailer < ApplicationMailer
     @patron = patron
     @user = @patron.user
     @product = @patron.product
-    mail(subject: "#{@user.email}さんが#{@product.title}のパトロンになったことを確認いたしました。",to: @product.user.email)
+    @notification = @patron.notifications.new(user_id: @user.id)
+    @notification.save
+    if mail(subject: "#{@user.email}さんが#{@product.title}のパトロンになったことを確認いたしました。",to: @product.user.email)
+
+    else
+      puts "確認用のメールは送信できませんでした。"
+    end
   end
 end
