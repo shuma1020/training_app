@@ -19,6 +19,8 @@ class PatronsController < ApplicationController
     end
     respond_to do |format|
       if @patron.save
+        PatronMailer.notification_for_patron(@patron).deliver_now
+        PatronMailer.notification_for_owner(@patron).deliver_now
         format.html { redirect_to @product, notice: 'パトロンになりました' }
         format.json { render :show, status: :created, location: @product }
       else
