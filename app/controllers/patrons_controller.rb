@@ -21,8 +21,7 @@ class PatronsController < ApplicationController
       if @patron.save
         PatronMailer.notification_for_patron(@patron).deliver_now
         PatronMailer.notification_for_owner(@patron).deliver_now
-        @notification = @patron.notifications.new(user_id: @user.id)
-        @notification.product_id = @product.id
+        @notification = @patron.notifications.new(user_id: current_user.id)
         @notification.save
         format.html { redirect_to @product, notice: 'パトロンになりました' }
         format.json { render :show, status: :created, location: @product }
