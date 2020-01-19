@@ -1,2 +1,2 @@
 - @notifications.each do |notification|
-  = notification.product.title
+  = link_to notification.product.title, product_path(notification.product)
