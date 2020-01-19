@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :products
   end
   namespace :mypage do
+    resources :notifications, only: [:index]
     resources :products do
       get "liked", on: :collection
       patch "unlike", on: :member
@@ -30,5 +31,4 @@ Rails.application.routes.draw do
     resources :patrons, only: [:index]
   end
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-  resources :notifications, only: [:index]
 end
