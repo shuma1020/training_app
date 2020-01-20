@@ -1,9 +1,11 @@
 - @notifications.each do |notification|
-  %p
-  = link_to notification.product.title, product_path(notification.product)
-  のパトロンになりました
-- @receive_notifications.each do |notification|
-  = link_to notification.product.title, product_path(notification.product)
-  に
-  = notification.user.email
-  がパトロンになりました
+  - if notification.user_id == current_user.id
+    %p
+    = link_to notification.product.title, product_path(notification.product)
+    のパトロンになりました
+
+  -else
+    = link_to notification.product.title, product_path(notification.product)
+    に
+    = notification.user.email
+    がパトロンになりました
