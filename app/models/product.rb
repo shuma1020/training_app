@@ -23,5 +23,4 @@ class Product < ApplicationRecord
     def owner?(user)
         self.user_id == user.id
     end
-    has_many :notifications, through: :patrons
 end

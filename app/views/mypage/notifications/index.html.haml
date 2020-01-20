@@ -1,11 +1,13 @@
 - @notifications.each do |notification|
-  - if notification.user_id == current_user.id
+  - if notification.user_id == notification.patron.product.user_id
     %p
-    = link_to notification.product.title, product_path(notification.product)
+    = link_to notification.patron.product.title, product_path(notification.patron.product)
+    に
+    = notification.patron.user.email
+    がパトロンになりました
+  - else
+    %p
+    = link_to notification.patron.product.title, product_path(notification.patron.product)
     のパトロンになりました
 
-  -else
-    = link_to notification.product.title, product_path(notification.product)
-    に
-    = notification.user.email
-    がパトロンになりました
+
