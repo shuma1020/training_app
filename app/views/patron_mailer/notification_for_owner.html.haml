@@ -3,8 +3,9 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1
-      = @user.name
-    %p パトロンに
+    %p
+    =  @product.title
+    に
     = @user.email
-    さんがなりました。
+    がパトロンになりました
+    = link_to "URL" , mypage_notifications_url(@user)
