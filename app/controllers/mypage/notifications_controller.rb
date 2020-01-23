@@ -4,5 +4,6 @@ class Mypage::NotificationsController < ApplicationController
     @notifications = current_user.notifications
     @unread = @notifications.where(status:"unread")
     @unread.update(status:"read")
+    @count_unread = @unread.count
   end
 end
