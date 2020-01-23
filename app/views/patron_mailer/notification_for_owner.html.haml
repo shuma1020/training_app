@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %p
+    =  @product.title
+    に
+    = @user.email
+    がパトロンになりました
+    = link_to "URL" , mypage_notifications_url(@user)

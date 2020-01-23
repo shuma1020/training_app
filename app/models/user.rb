@@ -13,4 +13,5 @@ class User < ApplicationRecord
   end
   has_many :patrons
   has_many :donated_products, through: :patrons, source: :product
+  has_many :notifications
 end

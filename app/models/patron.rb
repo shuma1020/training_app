@@ -4,7 +4,7 @@ class Patron < ApplicationRecord
   validates :donation, presence: true
   validate :donation_error
   belongs_to :reward
-
+  has_many :notifications
   private
 
   def donation_error
