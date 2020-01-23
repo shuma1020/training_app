@@ -16,4 +16,4 @@
       - if current_user
         %li.nav-item.active
           = link_to_unless_current 'マイページ', mypage_products_path, class:"nav-link"
-  %p= @count_unread
+  = link_to @count_unread, mypage_notifications_path
