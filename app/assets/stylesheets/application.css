@@ -16,17 +16,27 @@
 .btn {
   margin-top: 4px;
 }
-.notification i{
-  color: aliceblue;
-  position: fixed;
-  right:30px;
-  top: 24px;
+
+.notice {
+  position: relative;
+  top:10px;
+  left: 680px;
+  z-index: 1;
+}
+.notice i{
+  color: antiquewhite;
 }
 
-.notification a{
-  position: absolute;
-  top: 3px;
-  right: 9px;
-  z-index: 4;
-  color: brown;
+.badge1{
+  position:absolute;
+  top:-6px;
+  right:-12px;
+  font-size:.7em;
+  background-color: brown;
+  color:white;
+  width:18px;height:18px;
+  text-align:center;
+  line-height:18px;
+  border-radius:50%;
+  box-shadow:0 0 1px #333;
 }
