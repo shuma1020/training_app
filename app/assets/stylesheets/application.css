@@ -23,6 +23,9 @@
   left: 680px;
   z-index: 1;
 }
+.notice i{
+  color: antiquewhite;
+}
 
 .badge1{
   position:absolute;
