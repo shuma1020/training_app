@@ -7,32 +7,14 @@ class PatronsController < ApplicationController
   end
 
   def create
-    @product = Product.find(params[:product_id])
-    @patron = @product.patrons.new(patron_params)
-    @patron.user_id = current_user.id
-    @rewards = Reward.where("price<?",@patron.donation)
-    reward = @rewards.order(price: :desc).first
-    if reward
-      @patron.reward_id = reward.id
+    product = Product.find(params[:product_id])
+    if Patron.create_with_donation(product, current_user, patron_params)
+      format.html { redirect_to product, notice: 'パトロンになりました' }
+      format.json { render :show, status: :created, location: @product }
     else
-      @patron.reward_id == nil
-    end
-    respond_to do |format|
-      if @patron.save
-        @notification = @patron.notifications.new(user_id: @patron.product.user.id)
-        @notification.save
-        @notification = @patron.notifications.new(user_id: current_user.id)
-        if @notification.save
-          PatronMailer.notification_for_patron(@patron).deliver_now
-          PatronMailer.notification_for_owner(@patron).deliver_now
-        end
-        format.html { redirect_to @product, notice: 'パトロンになりました' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        @rewards = @product.rewards
-        format.html { render :new }
-        format.json { render json: @patron.errors, status: :unprocessable_entity }
-      end
+      rewards = product.rewards
+      format.html { render :new }
+      format.json { render json: patron.errors, status: :unprocessable_entity }
     end
   end
 
