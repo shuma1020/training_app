@@ -22,16 +22,17 @@ class Patron < ApplicationRecord
     else
       patron.reward_id == nil
     end
-    respond_to do |format|
-      if patron.save
-        notification = patron.notifications.new(user_id: patron.product.user.id)
-        notification.save
-        notification = patron.notifications.new(user_id: current_user.id)
-        if notification.save
-          PatronMailer.notification_for_patron(patron).deliver_now
-          PatronMailer.notification_for_owner(patron).deliver_now
-        end
+    if patron.save
+      notification = patron.notifications.new(user_id: patron.product.user.id)
+      notification.save
+      notification = patron.notifications.new(user_id: user.id)
+      if notification.save
+        PatronMailer.notification_for_patron(patron).deliver_now
+        PatronMailer.notification_for_owner(patron).deliver_now
       end
+      patron
+    else
+      patron
     end
   end
 end
