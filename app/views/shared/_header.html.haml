@@ -16,7 +16,9 @@
       - if current_user
         %li.nav-item.active
           = link_to_unless_current 'マイページ', mypage_products_path, class:"nav-link"
-    .notification
-      = link_to @count_unread, mypage_notifications_path, class:"nav-link"
-      %i.far.fa-envelope
+      = link_to mypage_notifications_path, class:"notice" do
+        %i.far.fa-envelope
+        .badge1
+          .p
+          =@count_unread
 
