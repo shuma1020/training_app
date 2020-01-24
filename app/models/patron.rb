@@ -22,7 +22,7 @@ class Patron < ApplicationRecord
     else
       patron.reward_id == nil
     end
-    
+    respond_to do |format|
       if patron.save
         notification = patron.notifications.new(user_id: patron.product.user.id)
         notification.save
@@ -32,6 +32,6 @@ class Patron < ApplicationRecord
           PatronMailer.notification_for_owner(patron).deliver_now
         end
       end
-    
+    end
   end
 end
