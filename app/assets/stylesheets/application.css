@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+
 .btn {
   margin-top: 4px;
 }
@@ -23,6 +25,16 @@
   right:-680px;
 }
 .notice i{
+  color: antiquewhite;
+}
+
+.mypage{
+  position: relative;
+  top:1px;
+  right:-800px;
+}
+
+.mypage i{
   color: antiquewhite;
 }
 
@@ -39,4 +51,15 @@
   line-height:18px;
   border-radius:50%;
   box-shadow:0 0 1px #333;
+}
+
+.logout_button{
+  position: relative;
+  top: -2px;
+  right: 4px;
+
+}
+
+.btn btn-outline-primary{
+  position: absolute;
 }
