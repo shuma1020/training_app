@@ -15,7 +15,7 @@ class Patron < ApplicationRecord
   def self.create_with_donation(product, user, patron_params)
     patron = product.patrons.new(patron_params)
     patron.user_id = user.id
-    rewards = Reward.where("price<?", patron.donation)
+    rewards = product.rewards.where("price<?", patron.donation)
     reward = rewards.order(price: :desc).first
     if reward
       patron.reward_id = reward.id
