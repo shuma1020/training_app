@@ -13,26 +13,28 @@ class Patron < ApplicationRecord
   end
 
   def self.create_with_donation(product, user, patron_params)
-    patron = product.patrons.new(patron_params)
-    patron.user_id = user.id
-    rewards = product.rewards.where("price<?", patron.donation)
-    reward = rewards.order(price: :desc).first
-    if reward
-      patron.reward_id = reward.id
-    else
-      patron.reward_id == nil
-    end
-    if patron.save
-      notification = patron.notifications.new(user_id: patron.product.user.id)
-      notification.save
-      notification = patron.notifications.new(user_id: user.id)
-      if notification.save
-        PatronMailer.notification_for_patron(patron).deliver_now
-        PatronMailer.notification_for_owner(patron).deliver_now
+    ActiveRecord::Base.transaction do
+      patron = product.patrons.new(patron_params)
+      patron.user_id = user.id
+      rewards = product.rewards.where("price<?", patron.donation)
+      reward = rewards.order(price: :desc).first
+      if reward
+        patron.reward_id = reward.id
+      else
+        patron.reward_id == nil
       end
-      patron
-    else
-      patron
+      if patron.save
+        notification = patron.notifications.new(user_id: patron.product.user.id)
+        notification.save!
+        notification = patron.notifications.new(user_id: user.id)
+        if notification.save!
+          PatronMailer.notification_for_patron(patron).deliver_now
+          PatronMailer.notification_for_owner(patron).deliver_now
+        end
+        patron
+      else
+        patron
+      end
     end
   end
 end
