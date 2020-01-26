@@ -37,8 +37,7 @@ gem 'enum_help'
 gem 'carrierwave'
 gem 'rails-i18n'
 gem 'haml-rails'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'kaminari', '~> 0.17.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
