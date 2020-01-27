@@ -39,7 +39,7 @@
                     %small 状態
                     = product.status
 
-        = will_paginate @books, :previous_label => ' &lt 前へ', :next_label => '次へ &gt'
+        = paginate @products
 - else
   %h2 現在ログインしていません
   = link_to "ログイン",  login_path, class: 'post'
