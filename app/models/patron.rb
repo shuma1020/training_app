@@ -23,17 +23,17 @@ class Patron < ApplicationRecord
       else
         patron.reward_id == nil
       end
-      if patron.save!
-        notification = patron.notifications.new(user_id: patron.product.user.id)
-        notification.save!
-        notification = patron.notifications.new(user_id: user.id)
-        notification.save!
-        PatronMailer.notification_for_patron(patron).deliver_now
-        PatronMailer.notification_for_owner(patron).deliver_now
-        patron
-      else
-        patron
-      end
+
+      return patron unless patron.valid?
+
+      patron.save!
+      notification = patron.notifications.new(user_id: patron.product.user.id)
+      notification.save!
+      notification = patron.notifications.new(user_id: user.id)
+      notification.save!
+      PatronMailer.notification_for_patron(patron).deliver_now
+      PatronMailer.notification_for_owner(patron).deliver_now
+      patron
     end
   end
 end

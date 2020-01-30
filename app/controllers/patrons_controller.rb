@@ -16,7 +16,7 @@ class PatronsController < ApplicationController
       else
         @rewards = @product.rewards
         format.html { render :new }
-        format.json { render json: patron.errors, status: :unprocessable_entity }
+        format.json { render json: @patron.errors, status: :unprocessable_entity }
       end
     end
   end
