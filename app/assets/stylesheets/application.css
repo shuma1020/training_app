@@ -63,3 +63,12 @@
 .btn btn-outline-primary{
   position: absolute;
 }
+
+.btn.outline {
+  border: 3px solid white;
+  color: white;
+}
+
+.border.primary{
+  color:red;
+}

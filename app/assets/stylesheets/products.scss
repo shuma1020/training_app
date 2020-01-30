@@ -1,6 +1,7 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
 .patron_message{
   text-align: center;
   font-size: 24px;
@@ -10,16 +11,8 @@
   text-align: center;
 }
 
-.btn-flat-simple {
-  position: relative;
-  display: inline-block;
-  font-weight: bold;
-  padding: 0.25em 0.5em;
-  text-decoration: none;
-  color: #00BCD4;
-}
-
-.btn-flat-simple:hover {
-  background: #00bcd4;
-  color: white;
+.col-sm-6{
+  .card .col .border-bottom .border-primary{
+    color: red;
+  }
 }
