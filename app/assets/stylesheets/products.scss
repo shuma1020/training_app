@@ -11,8 +11,8 @@
   text-align: center;
 }
 
-.col-sm-6{
-  .card .col .border-bottom .border-primary{
-    color: red;
+
+  .card-body.border-bottom-color{
+    border-bottom: 6px solid #ffb300;
   }
-}
+
