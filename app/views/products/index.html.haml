@@ -23,7 +23,7 @@
                         %div#list_index
                             %span= link_to 'Show', product
 
-
+    = paginate @products , class:"justify-content-center"
 
 - else
     %h2 現在ログインしていません
