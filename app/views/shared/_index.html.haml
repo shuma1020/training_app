@@ -1,9 +1,9 @@
 - if user_signed_in?
   = link_to "ログアウト", destroy_user_session_path, method: :delete
   - if current_user.products.exists?
-    .main-project
-      .first-one
-        .card{:style => "width: 30rem;"}
+    .row
+      .col-md-6
+        .card
           .box-in
             - if @products.first.image?
               = link_to image_tag(@products.first.image.url, {class:"card-img-top", alt:"Responsive image"}), mypage_product_path(@products.first)
@@ -21,27 +21,28 @@
                 %small お返し
                 - @products.first.rewards.each do |reward|
                   %p.card-text= reward.title
-      .second-one
-        - @products[1..-1].each do |product|
-          .second-wrapper
-            .card{:style => "width: 16rem;"}
-              .box-in
-                - if product.image?
-                  = link_to image_tag(product.image.url, {class:"card-img-top", alt:"Responsive image"}), mypage_product_path(product)
-              .card-body
-                .card-title
-                  = product.title
-                .box-status
-                  %span
-                    %small 目標金額
-                    = product.price
-                  %span
-                    %small 状態
-                    = product.status
-                  %span
-                    %small お返し
-                    - product.rewards.each do |reward|
-                      %p.card-text= reward.title
+      .col-md-6
+        .row
+          - @products[1..-1].each do |product|
+            .col-md-6
+              .card
+                .box-in
+                  - if product.image?
+                    = link_to image_tag(product.image.url, {class:"card-img-top", alt:"Responsive image"}), mypage_product_path(product)
+                .card-body
+                  .card-title
+                    = product.title
+                  .box-status
+                    %span
+                      %small 目標金額
+                      = product.price
+                    %span
+                      %small 状態
+                      = product.status
+                    %span
+                      %small お返し
+                      - product.rewards.each do |reward|
+                        %p.card-text= reward.title
 - else
   %h2 現在ログインしていません
   = link_to "ログイン",  login_path, class: 'post'

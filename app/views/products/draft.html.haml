@@ -5,32 +5,32 @@
   %p#notice= notice
 
   %h1.product_title Products
-
-  %table.table.table-borderless
-    %thead.thead-dark
-      %tr
-        %th{scope:"col"}参照する
-        %th{scope:"col"}Title
-        %th{scope:"col"}Price
-        %th{scope:"col"}Description
-        %th{scope:"col"}Status
-        %th{scope:"col"}Message
-        %th{scope:"col"}Users
-        %th{scope:"col"}Rewards
-        %th{scope:"col", colspan:"4"}
-
-    %tbody
-      - @products.each do |product|
+  .table-responsive
+    %table.table.table-borderless
+      %thead.thead-dark
         %tr
-          %td= link_to 'Show', product
-          %td= product.title
-          %td= product.price
-          %td= product.description
-          %td= product.status
-          %td= product.message
-          %td= product.user_id
-          - product.rewards.each do |reward|
-            %td= reward.title
+          %th{scope:"col"}参照する
+          %th{scope:"col"}Title
+          %th{scope:"col"}Price
+          %th{scope:"col"}Description
+          %th{scope:"col"}Status
+          %th{scope:"col"}Message
+          %th{scope:"col"}Users
+          %th{scope:"col"}Rewards
+          %th{scope:"col", colspan:"4"}
+
+      %tbody
+        - @products.each do |product|
+          %tr
+            %td= link_to 'Show', product
+            %td= product.title
+            %td= product.price
+            %td= product.description
+            %td= product.status
+            %td= product.message
+            %td= product.user_id
+            - product.rewards.each do |reward|
+              %td= reward.title
 
 
 
