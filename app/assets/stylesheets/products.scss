@@ -7,15 +7,66 @@
   font-size: 24px;
   font-style: normal;
 }
-.card-title{
-  text-align: center;
-}
-
 
   .card-body.border-bottom{
     border-bottom: 6px solid #ffb300!important;
   }
 
 .background-image{
+
+}
+
+.row{
+  .card{
+    padding-right: 0;
+
+    .card-body {
+      p{
+        margin: 0 12px 0 12px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        text-align: center;
+        font-size: 24px;
+        color: #434a54;
+        overflow: hidden;
+
+    }
+  }
+
+  }
+  .col-3.order-first.box-status{
+    display: flex;
+    justify-content: center;
+    padding-right: 0;
+
+    p{
+      vertical-align: baseline;
+    }
+    .small{
+      font-size: 14px;
+      padding-top: 10px;
+      color: #666666;
+    }
+  }
+    .col-9.order-last.box-status{
+      display: flex;
+      justify-content: center;
+      .small{
+        font-size: 14px;
+        margin-right: 4px;
+        padding-top: 10px;
+        color: #666666;
+      }
+    }
+}
+.card .col {
+  margin: 0px;
+
+  .card-text{
+    font-size: 24px;
+    color: #666666;
+  }
+
 
 }

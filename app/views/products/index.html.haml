@@ -9,22 +9,15 @@
                     .card-body.border-bottom{style:"height:20px"}
                         .background-image{style: 'background-image:url(product.image.url)'}
                     .card-body
-                        %h3{class:"card-title"}= product.title
+                        %p= product.title
                         .col
-                            %span{scope:"col"} 価格
-                            %h6.card-text= product.price
-                            %span{scope:"col"} 詳細
-                            %h6{class:"card-text"}= product.description
-                            %span{scope:"col"} 状態
-                            %h6{class:"card-text"}= product.status
-                            %span{scope:"col"} メッセージ
-                            %h6{class:"card-text"}= product.message
-                            %span{scope:"col"} メール
-                            %h6{class:"card-text"}= product.user.email
-                            %span{scope:"col"} お返し
-                            - product.rewards.each do |reward|
-                                %h6= reward.title
-
+                            .row
+                                .col-3.order-first.box-status
+                                    %span.small 価格
+                                    %p.card-text= product.price
+                                .col-9.order-last.box-status
+                                    %span.small メール
+                                    .card-text= product.user.email
 
 
                         %div#list_index
