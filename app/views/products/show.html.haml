@@ -9,10 +9,14 @@
         %p
           =@product.message
   .col-sm-4
-    .goal-money
+    .current-donation
       %i.fas.fa-yen-sign
-      %span 目標金額
+      %span 現在の支援総額
     %strong.show-title
+      = @current_donation.to_s(:delimited)
+      円
+    .goal-money
+      %span 目標金額は
       = @product.price.to_s(:delimited)
       円
     .number-patrons

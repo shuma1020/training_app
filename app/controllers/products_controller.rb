@@ -13,9 +13,12 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @patrons = @product.patrons.all
     @rewards = @product.rewards
     @patron = current_user.patrons.find_by(product: @product)
+    if @patrons = @product.patrons.all
+      @current_donation = @patrons.sum{|patron|patron[:donation]}
+    end
+    @percent = (@current_donation.to_f / @product.price * 100).round(0)
   end
 
   def draft
