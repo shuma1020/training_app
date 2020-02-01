@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :mypage do
+    get 'top/index'
+  end
   get "home/index"
   devise_for :users
   resources :products, only: [:index, :show] do
