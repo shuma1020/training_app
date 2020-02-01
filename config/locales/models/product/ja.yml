@@ -12,4 +12,8 @@ ja:
         user: ユーザー
         image: 画像
         product: 製品
-        
+  enums:
+    product:
+      status:
+        draft: 下書き
+        release: 公開

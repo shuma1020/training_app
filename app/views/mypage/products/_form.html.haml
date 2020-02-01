@@ -34,7 +34,7 @@
       = form.text_area :description, class:"form-control"
     .field
       = form.label :status
-      = form.select :status, Product.statuses.keys,class:"form-control"
+      = form.select :status, Product.statuses_i18n.keys.map{|k| [I18n.t("enums.product.status.#{k}"), k]},class:"form-control"
     .field
       = form.label :message
       = form.text_area :message, class:"form-control"
