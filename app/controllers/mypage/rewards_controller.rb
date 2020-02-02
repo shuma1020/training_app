@@ -30,8 +30,9 @@ class Mypage::RewardsController < ApplicationController
   # POST /rewards
   # POST /rewards.json
   def create
-    @product = Product.find(params[:product_id])
-    @reward = @product.rewards.new(reward_params)
+    p "kkk"
+    p @product = Product.find(params[:product_id])
+    p @reward = @product.rewards.new(reward_params)
     respond_to do |format|
       if  @reward.save
         format.html { redirect_to mypage_product_path(@product), notice: 'Reward was successfully created.' }

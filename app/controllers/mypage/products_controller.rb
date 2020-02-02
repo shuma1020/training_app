@@ -22,7 +22,8 @@ class Mypage::ProductsController < ApplicationController
     end
 
     def create
-        @product = current_user.products.new(product_params)
+        p "qqqqqqqqq"
+        p @product = current_user.products.new(product_params)
         respond_to do |format|
             if @product.save
             format.html { redirect_to @product, notice: 'Product was successfully created.' }
