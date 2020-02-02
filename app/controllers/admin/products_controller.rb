@@ -6,6 +6,10 @@ class Admin::ProductsController < ApplicationController
     end
     def index
         @products = Product.all
+        @q = Product.ransack(params[:q])
+        p @products = @q.result(distinct: true)
+        p "kkk"
+        p render "/admin/products"
     end
 
     def create
@@ -16,13 +20,17 @@ class Admin::ProductsController < ApplicationController
         @product.destroy
     end
     def edit
-       
+
+    end
+
+    def search_params
+        params.require(:q).permit(:title_cont, :status_cont, :price)
     end
 
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+        @product = Product.find(params[:id])
     end
 
     def admin_check

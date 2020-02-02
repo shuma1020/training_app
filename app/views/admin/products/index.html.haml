@@ -2,34 +2,38 @@
   = link_to "ログアウト", destroy_user_session_path, method: :delete
   / ログアウトをする
   %h1.product_title Products
-  %table.table.table-borderless
-    %thead.thead-dark
-      %tr
-        %th{scope:"col"} 参照する
-        %th{scope:"col"} 編集する
-        %th{scope:"col"} 削除する
-        %th{scope:"col"} Title
-        %th{scope:"col"} Price
-        %th{scope:"col"} Description
-        %th{scope:"col"}Status
-        %th{scope:"col"} Message
-        %th{scope:"col"} Users
-        %th{scope:"col"} Rewards
-        %th{:colspan => "4", :scope => "col"}
-    %tbody
-      - @products.each do |product|
+  = search_form_for(model: [:admin, @q]) do |f|
+    = f.label :title, "Keyword"
+    = f.search_field :name_cont
+    = f.submit "検索"
+    %table.table.table-borderless
+      %thead.thead-dark
         %tr
-          %td= link_to 'Show', product_path(product)
-          %td= link_to 'Edit', edit_admin_product_path(product)
-          %td= link_to 'Destroy', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' }
-          %td= product.title
-          %td= product.price
-          %td= product.description
-          %td= product.status
-          %td= product.message
-          %td= product.user.email
-          - product.rewards.each do |reward|
-            %td= reward.title
+          %th{scope:"col"} 参照する
+          %th{scope:"col"} 編集する
+          %th{scope:"col"} 削除する
+          %th{scope:"col"} Title
+          %th{scope:"col"} Price
+          %th{scope:"col"} Description
+          %th{scope:"col"}Status
+          %th{scope:"col"} Message
+          %th{scope:"col"} Users
+          %th{scope:"col"} Rewards
+          %th{:colspan => "4", :scope => "col"}
+      %tbody
+        - @products.each do |product|
+          %tr
+            %td= link_to 'Show', product_path(product)
+            %td= link_to 'Edit', edit_admin_product_path(product)
+            %td= link_to 'Destroy', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' }
+            %td= product.title
+            %td= product.price
+            %td= product.description
+            %td= product.status
+            %td= product.message
+            %td= product.user.email
+            - product.rewards.each do |reward|
+              %td= reward.title
   %br/
 - else
   %h2 現在ログインしていません

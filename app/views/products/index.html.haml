@@ -4,7 +4,7 @@
         - @products.each do |product|
             .col-sm-6
                 .card
-                    .card-image.border-bottom{style:'background-image:url("#{product.image.url}")'}
+                    .card-image.border-bottom{style:"background-image:url#{product.image.url}"}
                     .card-body
                         %p= product.title
                         .col
