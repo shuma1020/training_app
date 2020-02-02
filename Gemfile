@@ -37,7 +37,7 @@ gem 'enum_help'
 gem 'carrierwave'
 gem 'rails-i18n'
 gem 'haml-rails'
-gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'kaminari'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
