@@ -7,9 +7,8 @@ class Admin::ProductsController < ApplicationController
     def index
         @products = Product.all
         @q = Product.ransack(params[:q])
-        p @products = @q.result(distinct: true)
-        p "kkk"
-        p render "/admin/products"
+        @products = @q.result(distinct: true)
+        render "/admin/products"
     end
 
     def create
