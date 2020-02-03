@@ -1,3 +1,5 @@
+.back-button
+  = link_to "Back", product_path(@product),class:"btn btn-primary"
 .row
   .col-8
     - @rewards.each do |reward|
@@ -25,8 +27,6 @@
             - @patron.errors.full_messages.each do |message|
               %li= message
   .col-4
-
-    = link_to "Back", product_path(@product)
     .check-patron
       %i.fa.fa-check-square
       %span パトロンになるプロジェクト
