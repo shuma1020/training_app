@@ -24,7 +24,12 @@
     section{
       position: relative;
       margin-bottom: 40px;
-
+      .show-image{
+        height: 400px;
+        width: 100%;
+        background-position:center bottom;
+        background-size:cover;
+      }
     }
   }
   .col-sm-4{

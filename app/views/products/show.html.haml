@@ -4,7 +4,7 @@
   .col-sm-8
     - if @product.image?
       %section
-        = image_tag @product.image.url,class:"img-thumbnail ", alt:"Responsive image"
+        .show-image{style:"background-image:url(#{@product.image.url})"}
       %section
         %p
           =@product.message
