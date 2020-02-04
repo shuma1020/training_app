@@ -10,6 +10,7 @@ https://camp-fire.jp/
 ### 学んだ・使っているテクニック
 - アソシエーション
   中間テーブル
+- ActiveRecord
 - namespace
 - ネスト
 - enum
