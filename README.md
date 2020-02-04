@@ -11,14 +11,14 @@ https://camp-fire.jp/
   - メール通知
   - いいね機能
 ### 環境開発とセットアップ
-1.git@github.com:shuma1020/training_app.gitをcloneする
-2.rbenvをインストール
-3.postgresSQLをインストール
-4.bundlerを使ってGemをインストールbundle install --path vendor/bundle
-5. bin/rails create
-6. bin/rails db:migrate
-7. bin/rails db:seed
-8.サーバーを起動
+1.git@github.com:shuma1020/training_app.gitをcloneする  
+2.rbenvをインストール  
+3.postgresSQLをインストール  
+4.bundlerを使ってGemをインストールbundle install --path vendor/bundle  
+5. bin/rails create  
+6. bin/rails db:migrate  
+7. bin/rails db:seed  
+8.サーバーを起動  
   
 ### 学んだ・使っているテクニック
 - アソシエーション
