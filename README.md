@@ -27,11 +27,10 @@ source "https://rubygems.org"
 
 gem "rails", "~>4.0.2"
 ```
-$ bundle install --path vendor/bundle # 自プロジェクト内指定でインストール
-$ bundle exec rails new . -T # テストなしでインストール
+$ bundle install --path vendor/bundle  
+$ bundle exec rails new . -T  
 
 途中から
 DB:pg
 
 
-# training_app
