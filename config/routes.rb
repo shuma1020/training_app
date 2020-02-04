@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get "/admin" => "admin/products#index"
   namespace :admin do
+    get 'search', to: 'products#search'
     resources :products
   end
   namespace :mypage do

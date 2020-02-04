@@ -5,6 +5,8 @@
   = search_form_for(@q, url:admin_products_path) do |f|
     = f.label :title, "Keyword"
     = f.search_field :title_eq
+    = f.label :statuses_id_eq, '学部'
+    = f.select :status, Product.statuses.keys
     = f.submit "検索"
     %table.table.table-borderless
       %thead.thead-dark

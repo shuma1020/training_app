@@ -20,14 +20,16 @@ class Admin::ProductsController < ApplicationController
 
     end
 
-    def search_params
-        params.require(:q).permit(:title_cont, :status_cont, :price)
-    end
+
 
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
         @product = Product.find(params[:id])
+    end
+
+    def search_params
+        params.require(:q).permit(:title_eq, :status, :price)
     end
 
     def admin_check
@@ -36,4 +38,5 @@ class Admin::ProductsController < ApplicationController
             flash[:notice] = "管理者画面です"
         end
     end
+
 end
