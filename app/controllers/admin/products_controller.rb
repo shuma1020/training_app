@@ -5,10 +5,8 @@ class Admin::ProductsController < ApplicationController
         @product = Product.all
     end
     def index
-        @products = Product.all
         @q = Product.ransack(params[:q])
         @products = @q.result(distinct: true)
-        render "/admin/products"
     end
 
     def create
