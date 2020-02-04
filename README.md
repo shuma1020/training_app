@@ -1,25 +1,36 @@
-# README
+クラウドファンディングサイト
+https://camp-fire.jp/
+主な機能
+  1.プロジェクトを投稿する
+  2.プロジェクトに寄付する
+  3.寄付に対するリターンを投稿する
+  4.メール通知
+  5.いいね機能
+  
+学んだ・使っているテクニック
+アソシエーション
+  中間テーブル
+namespace
+ネスト
+enum
+bootstrap
+transaction
+バリデーション
+  カスタムバリデーション
+haml
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+立ち上げと開発環境
+bundle init 
+vi Gemfile
+# A sample Gemfile
+source "https://rubygems.org"
 
-Things you may want to cover:
+gem "rails", "~>4.0.2"
+$ bundle install --path vendor/bundle # 自プロジェクト内指定でインストール
+$ bundle exec rails new . -T # テストなしでインストール
 
-* Ruby version
+途中から
+DB:pg
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # training_app
