@@ -5,8 +5,10 @@
   = search_form_for(@q, url:admin_products_path) do |f|
     = f.label :title, "Keyword"
     = f.search_field :title_eq
-    = f.label :statuses_id_eq, '学部'
-    = f.select :status, Product.statuses.keys
+    = f.label :status, "Draft"
+    = f.radio_button :status_eq, 0, {:checked => true}
+    = f.label :status, "Release"
+    = f.radio_button :status_eq, 1
     = f.submit "検索"
     %table.table.table-borderless
       %thead.thead-dark
