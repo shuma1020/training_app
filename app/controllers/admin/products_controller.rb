@@ -28,10 +28,6 @@ class Admin::ProductsController < ApplicationController
         @product = Product.find(params[:id])
     end
 
-    def search_params
-        params.require(:q).permit(:title_eq, :status, :price)
-    end
-
     def admin_check
         unless user_signed_in? && current_user.role == "staff"
             redirect_to root_path
