@@ -1,13 +1,7 @@
 .nav.navbar.navbar-expand-sm.navbar-dark.bg-dark{
   margin-bottom: 24px;
   background-color: #ffffff !important;
-  .collapse.navbar-collapse{
-    .navbar-nav{
-      .nav-item{
-        .nav-link{
-          color: #333333;
-        }
-      }
-    }
+  .nav-link{
+    color: #333333;
   }
 }
