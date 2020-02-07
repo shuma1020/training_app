@@ -1,7 +1,7 @@
 class Mypage::RewardsController < ApplicationController
   before_action :correct_product, only: [:show, :edit, :update, :destroy]
   before_action :set_reward, only: [:show, :edit, :update, :destroy]
-  
+
 
   # GET /rewards
   # GET /rewards.json
@@ -72,12 +72,12 @@ class Mypage::RewardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reward
-      @product = current_user.products.find_by(id: params[:id])
+      @product = current_user.products.find(id: params[:id])
       @reward = @product.rewards.find(params[:id])
     end
 
     def correct_product
-      @product = current_user.products.find_by(id: params[:id])
+      @product = current_user.products.find(id: params[:id])
       unless @product
         redirect_to new_product_patron_path
       end

@@ -1,49 +1,45 @@
-= link_to "Back", product_path(@product),class:"btn btn-primary float-right back"
-.row
-  .col-8
-    - @rewards.each do |reward|
+.donation-button-right
+  = link_to "Back", product_path(@product),class:"btn btn-primary"
+.patron-new
+  .row
+    .col-8
+      - @rewards.each do |reward|
+        .card
+          .card-text
+            .card-header
+              = reward.price
+              円以上
+            .card-body
+              = reward.title
+              .card-text
+                = reward.description
+      .donation
+        = form_with model: [@product, @patron], local: true do |form|
+          .field
+            = form.label :金額
+            = form.number_field :donation, class:"form-control"
+          = form.submit class:"btn btn-primary"
+        - if @patron.errors.any?
+          =render "shared/error"
+    .col-4
+      .check-patron
+        %i.fa.fa-check-square
+        %span パトロンになるプロジェクト
       .card
+        .card-image-top{style:"background-image:url('#{@product.image.url}')"}
+        .card-body
+          %h5
+            = @product.title
+          .row
+            .col-6
+              %strong 目標金額
+            .col-6
+              = @product.price
+              円
+          .row
+            .col-6
+              %strong 概要
+            .col-6
+              = @product.description
         .card-text
-          .card-header
-            = reward.price
-            円以上
-          .card-body
-            = reward.title
-            .card-text
-              = reward.description
-    .donation
-      = form_with model: [@product, @patron], local: true do |form|
-        .field
-          = form.label :金額
-          = form.number_field :donation, class:"form-control"
-        = form.submit class:"btn btn-primary"
-      - if @patron.errors.any?
-        #error_explanation
-          %h4
-            = pluralize(@patron.errors.count, "つエラー")
-            があります:
-          %ul
-            - @patron.errors.full_messages.each do |message|
-              %li= message
-  .col-4
-    .check-patron
-      %i.fa.fa-check-square
-      %span パトロンになるプロジェクト
-    .card
-      .card-image-top{style:"background-image:url(#{@product.image.url})"}
-      .card-body
-        %h5
-          = @product.title
-        .row
-          .col-6
-            %strong 目標金額
-          .col-6
-            = @product.price
-            円
-        .row
-          .col-6
-            %strong 概要
-          .col-6
-            = @product.description
-      .card-text
-        = @product.message
+          = @product.message

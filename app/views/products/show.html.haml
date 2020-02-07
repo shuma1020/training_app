@@ -4,7 +4,7 @@
   .col-sm-8
     - if @product.image?
       %section
-        .show-image{style:"background-image:url(#{@product.image.url})"}
+        .show-image{style:"background-image:url('#{@product.image.url}')"}
       %section
         %p
           =@product.message

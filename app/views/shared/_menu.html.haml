@@ -1,18 +1,14 @@
-.nav.navbar.navbar-expand-sm.navbar-dark.bg-dark
-  %a.navbar-brand
-  %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
-  #navbarNavAltMarkup.collapse.navbar-collapse
-    %ul.navbar-nav
-      %li.nav-item
-        = link_to mypage_products_path, class:"nav-link" do
-          %i.fas.fa-trophy
-          %span 投稿したプロジェクト
-      %li.nav-item
-        = link_to  mypage_patrons_path,class:"nav-link" do
-          %i.fas.fa-cloud-upload-alt
-          %span 支援したプロジェクト
-      %li.nav-item
-        = link_to liked_mypage_products_path,class:"nav-link" do
-          %i.fas.fa-heart
-          %span お気に入りプロジェクト
+.myproject
+  %ul.nav
+    %li.nav-item
+      = link_to mypage_products_path, class:"nav-link" do
+        %i.fas.fa-trophy
+        %span 投稿したプロジェクト
+    %li.nav-item
+      = link_to  mypage_patrons_path,class:"nav-link" do
+        %i.fas.fa-cloud-upload-alt
+        %span 支援したプロジェクト
+    %li.nav-item
+      = link_to liked_mypage_products_path,class:"nav-link" do
+        %i.fas.fa-heart
+        %span お気に入りプロジェクト
