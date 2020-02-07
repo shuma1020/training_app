@@ -38,10 +38,6 @@ ul, li{
   padding-left: 4px;
 }
 
-.main-project .second-one {
-  display: flex;
-  flex-wrap: wrap;
-}
 .main-project .second-one .second-wrapper{
   padding: 4px;
 }

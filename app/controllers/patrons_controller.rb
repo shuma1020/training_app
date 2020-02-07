@@ -8,24 +8,9 @@ class PatronsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-    @patron = @product.patrons.new(patron_params)
-    @patron.user_id = current_user.id
-    @rewards = Reward.where("price<?",@patron.donation)
-    reward = @rewards.order(price: :desc).first
-    if reward
-      @patron.reward_id = reward.id
-    else
-      @patron.reward_id == nil
-    end
+    @patron = Patron.create_with_donation(@product, current_user, patron_params)
     respond_to do |format|
-      if @patron.save
-        @notification = @patron.notifications.new(user_id: @patron.product.user.id)
-        @notification.save
-        @notification = @patron.notifications.new(user_id: current_user.id)
-        if @notification.save
-          PatronMailer.notification_for_patron(@patron).deliver_now
-          PatronMailer.notification_for_owner(@patron).deliver_now
-        end
+      if @patron.valid?
         format.html { redirect_to @product, notice: 'パトロンになりました' }
         format.json { render :show, status: :created, location: @product }
       else
