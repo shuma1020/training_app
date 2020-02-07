@@ -2,7 +2,6 @@ class Mypage::RewardsController < ApplicationController
   before_action :correct_product, only: [:show, :edit, :update, :destroy]
   before_action :set_reward, only: [:show, :edit, :update, :destroy]
 
-
   # GET /rewards
   # GET /rewards.json
   def index
