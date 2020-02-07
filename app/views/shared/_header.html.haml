@@ -5,22 +5,26 @@
     = link_to 'Campfire', root_path, class:"navbar-brand"
     - if user_signed_in?
       %ul.navbar-nav.mr-auto
-        - if request.path.include?("mypage")
-          %li.nav-item.active
+        %li.nav-item.active
+          - if request.path.include?("mypage")
             = link_to 'プロジェクトを作成する', new_mypage_product_path, class:"nav-link"
         %li.nav-item.active
           = link_to_unless_current '下書きのみ', draft_products_path, class:"nav-link"
         %li.nav-item.active
           = link_to_unless_current '公開', release_products_path, class:"nav-link"
-      - if current_user
-        = link_to mypage_products_path, class:"mypage" do
-          %i.far.fa-user-circle.fa-3x
-      = link_to mypage_notifications_path, class:"notice" do
-        %i.far.fa-envelope
-        .badge1
-          .p
-          =@count_unread
-      .logout_button
-        = link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn outline info"
+      %ul.navbar-nav.right
+        %li.nav-item.active
+          = link_to mypage_notifications_path, class:"notice" do
+            %i.far.fa-envelope
+            .badge1
+              .p
+              =@count_unread
+        %li.nav-item.active
+          - if current_user
+            = link_to mypage_products_path, class:"mypage" do
+              %i.far.fa-user-circle.fa-3x
+        %li.nav-item.active
+          .logout_button
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn outline info"
 
 

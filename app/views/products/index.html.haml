@@ -1,27 +1,29 @@
 - if user_signed_in?
+    = form_tag(root_path, :method => "get") do
+        = text_field_tag :search
+        = submit_tag "Search" ,title:nil,class: "button is-info"
+        .row
+            - @products.each do |product|
+                .col-sm-4
+                    .card
+                        .card-image.border-bottom{style:"background-image:url('#{product.image.url}')"}
+                        .card-body
+                            %p= product.title
+                            .col
+                                .row
+                                    .col-4.order-first.box-status
+                                        %span.small 目標金額
+                                        %p.card-text= product.price
+                                        円
+                                    .col-8.order-last.box-status
+                                        %span.small Mail
+                                        .card-text= product.user.email
 
-    .row
-        - @products.each do |product|
-            .col-sm-4
-                .card
-                    .card-image.border-bottom{style:"background-image:url('#{product.image.url}')"}
-                    .card-body
-                        %p= product.title
-                        .col
-                            .row
-                                .col-4.order-first.box-status
-                                    %span.small 目標金額
-                                    %p.card-text= product.price
-                                    円
-                                .col-8.order-last.box-status
-                                    %span.small Mail
-                                    .card-text= product.user.email
 
+                            %div#list_index
+                                %span= link_to 'Show', product
 
-                        %div#list_index
-                            %span= link_to 'Show', product
-
-    = paginate @products , class:"justify-content-center"
+        = paginate @products , class:"justify-content-center"
 
 - else
     %h2 現在ログインしていません

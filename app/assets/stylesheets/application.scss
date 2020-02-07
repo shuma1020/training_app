@@ -21,23 +21,32 @@
 
 .notice {
   position: relative;
-  top:10px;
-  left:-120px;
-}
-.notice i{
-  color: antiquewhite;
+
+  i{
+    color: antiquewhite;
+  }
 }
 
 .mypage{
   position: relative;
-  top:1px;
-  left:-30px;
+  i{
+    color: antiquewhite;
+  }
 }
-
-.mypage i{
-  color: antiquewhite;
+.navbar-nav.right {
+  display: flex;
+  align-items: center;
+  .nav-item.active{
+    margin-left: 24px;
+  }
+  .notice {
+    position: relative;
+    margin: auto;
+    i{
+      color: antiquewhite;
+    }
+  }
 }
-
 .badge1{
   position:absolute;
   top:-6px;

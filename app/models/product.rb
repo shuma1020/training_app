@@ -23,4 +23,12 @@ class Product < ApplicationRecord
     def owner?(user)
         self.user_id == user.id
     end
+
+    def self.search(search)
+        if search
+            self.where(['title like?', "#{search}"])
+        else
+            all
+        end
+    end
 end
