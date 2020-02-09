@@ -1,45 +1,46 @@
-%p.main-title
-  = @product.title
-.row
-  .col-sm-8
-    - if @product.image?
-      %section
-        .show-image{style:"background-image:url('#{@product.image.url}')"}
-      %section
-        %p
-          =@product.message
-  .col-sm-4
-    .current-donation
-      %i.fas.fa-yen-sign
-      %span 現在の支援総額
-    %strong.show-title
-      = @current_donation.to_s(:delimited)
-      円
-    .goal-money
-      %span 目標金額は
-      = @product.price.to_s(:delimited)
-      円
-    .number-patrons
-      %i.fas.fa-users
-      %span パトロンの数
-    %strong.show-title
-      = @patrons.count
-      人
-    .patron_message
-      - if @patron.nil?
-        - if @product.owner?(current_user)
-          %p Your Product
+.products
+  %p.main-title
+    = @product.title
+  .row
+    .col-sm-8
+      - if @product.image?
+        %section
+          .show-image{style:"background-image:url('#{@product.image.url}')"}
+        %section
+          %p
+            =@product.message
+    .col-sm-4
+      .current-donation
+        %i.fas.fa-yen-sign
+        %span 現在の支援総額
+      %strong.show-title
+        = @current_donation.to_s(:delimited)
+        円
+      .goal-money
+        %span 目標金額は
+        = @product.price.to_s(:delimited)
+        円
+      .number-patrons
+        %i.fas.fa-users
+        %span パトロンの数
+      %strong.show-title
+        = @patrons.count
+        人
+      .patron_message
+        - if @patron.nil?
+          - if @product.owner?(current_user)
+            %p Your Product
+          - else
+            = link_to new_product_patron_path(@product), class:"btn btn-secondary" do
+              %p プロジェクトを支援する
+              %i.fa.fa-chevron-circle-right
         - else
-          = link_to new_product_patron_path(@product), class:"btn btn-secondary" do
-            %p プロジェクトを支援する
-            %i.fa.fa-chevron-circle-right
-      - else
-        %p
-          = @patron.created_at.strftime("%m月%d日")
-          からパトロンです(#{@patron.donation}円)
-      - if current_user.liked_for?(@product)
-        = link_to [:like, @product], class:"like-button", method: :patch do
-          %i.far.fa-heart
-          %span　お気に入り
-      = link_to 'Back', products_path, class:"btn btn-primary"
+          %p
+            = @patron.created_at.strftime("%m月%d日")
+            からパトロンです(#{@patron.donation}円)
+        - if current_user.liked_for?(@product)
+          = link_to [:like, @product], class:"like-button", method: :patch do
+            %i.far.fa-heart
+            %span　お気に入り
+        = link_to 'Back', products_path, class:"btn btn-primary"
 

@@ -4,13 +4,13 @@
 .donation-button-right{
   display: flex;
   justify-content: flex-end;
-.btn-primary{
-    background-color: #fac75a;
-    border: #fac75a;
-    &:hover{
+  .btn-primary{
       background-color: #fac75a;
-      opacity: 0.7;
-  }
+      border: #fac75a;
+      &:hover{
+        background-color: #fac75a;
+        opacity: 0.7;
+    }
 }
 }
 .patron-new{

@@ -71,12 +71,13 @@ class Mypage::RewardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reward
-      @product = current_user.products.find(id: params[:id])
+      @product = current_user.products.find(params[:product_id])
       @reward = @product.rewards.find(params[:id])
     end
 
     def correct_product
-      @product = current_user.products.find(id: params[:id])
+      p params[:product_id]
+      p @product = current_user.products.find(params[:product_id])
       unless @product
         redirect_to new_product_patron_path
       end
