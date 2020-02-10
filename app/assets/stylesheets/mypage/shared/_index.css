@@ -23,8 +23,6 @@ ul, li{
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
-  position: relative;
 }
 
 .main-project .first-one{
@@ -33,10 +31,6 @@ ul, li{
 
 .main-project .second-one {
   width: 50%;
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  height: 400px;
 }
 
 .main-project .second-wrapper ul {
@@ -44,12 +38,6 @@ ul, li{
   padding-left: 4px;
 }
 
-
 .main-project .second-one .second-wrapper{
   padding: 4px;
-}
-.pagination{
-  position: absolute;
-  top: 140px;
-  width: 100%;
 }
