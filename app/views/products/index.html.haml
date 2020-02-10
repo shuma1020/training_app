@@ -1,7 +1,7 @@
-
-
 - if user_signed_in?
-
+    = form_with url: root_path, method: "get" do |form|
+        = form.text_field :title
+        = form.submit "検索"
     %div.r
         - @products.each do |product|
             %div.col-sm-6
@@ -31,8 +31,6 @@
 
                             %div#list_index
                                 %span= link_to 'Show', product
-
-
 
 - else
     %h2 現在ログインしていません
