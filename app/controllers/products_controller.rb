@@ -7,8 +7,13 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    p params[:status]
-    p @products = Product.where(status: params[:status])
+    p params[:price_gteq]
+    p params[:price_lt]
+
+    if params[:title].nil?
+
+    end
+      @products = Product.where("price::text>=? AND price::text<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").or(Product.where(status: params[:status])).or(Product.where(title: params[:title]))
   end
 
   # GET /products/1
