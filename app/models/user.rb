@@ -15,4 +15,5 @@ class User < ApplicationRecord
   has_many :donated_products, through: :patrons, source: :product
   has_many :notifications
   validates :name, presence: true
+  validates :email, presence: true
 end
