@@ -76,10 +76,13 @@ class Mypage::RewardsController < ApplicationController
     end
 
     def correct_product
-      p params[:product_id]
-      p @product = current_user.products.find(params[:product_id])
-      unless @product
-        redirect_to new_product_patron_path
+      if current_user.products.where(id: params[:product_id]).exists?
+        @product = current_user.products.find(params[:product_id])
+        unless @product
+          redirect_to new_product_patron_path
+        end
+      else
+        redirect_to mypage_products_path
       end
     end
 
