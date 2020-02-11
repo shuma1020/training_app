@@ -29,3 +29,22 @@
   justify-content: center;
   align-items: center;
 }
+
+.center_layout5{
+  background-color:  #ddd;
+  height: 300px;
+  width: 640px;
+  position: relative;
+  p{
+    background-color: #2196F3;
+    position: absolute;
+
+    top:  0;
+    bottom:  0;
+    left:  0;
+    right:  0;
+    margin:  auto;
+    width:  150px;
+    height: 80px;
+  }
+}
