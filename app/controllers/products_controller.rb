@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     @rewards = @product.rewards
     @patron = current_user.patrons.find_by(product: @product)
     @patrons = @product.patrons.all
-    @current_donation = @patrons.sum{|patron|patron[:donation]}
+    @current_donation = Product.count_donation(@patrons)
     @percent = Product.percent_of_donation(@current_donation,@product)
   end
 
