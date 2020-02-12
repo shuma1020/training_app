@@ -12,17 +12,11 @@ class ProductsController < ApplicationController
 
     end
 
-    if params[:title].blank?
-      if params[:price_gteq].blank? && params[:price_lt].blank?
-        @products = Product.where(status: params[:status])
-      else 
-        @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status])
-      end
-    elsif params[:price_gteq].blank? && params[:price_lt].blank?
-      @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(title: params[:title])
-    else
-      @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status]).where(title: params[:title])
-    end
+    @products = Product.all
+    @products = Product.where(status: params[:status]).where(title: params[:title]) if params[:title].present?
+    @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status]) if params[:price_gteq].present? && params[:price_lt].present?
+    @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status]).where(title: params[:title])if params[:price_gteq].present? && params[:price_lt].present? && params[:title].present?
+    p @products
 
   end
 
