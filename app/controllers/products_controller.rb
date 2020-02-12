@@ -15,13 +15,13 @@ class ProductsController < ApplicationController
     if params[:title].blank?
       if params[:price_gteq].blank? && params[:price_lt].blank?
         @products = Product.where(status: params[:status])
-      else
-        @products = Product.where("price::text>=? AND price::text<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status])
+      else 
+        @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status])
       end
     elsif params[:price_gteq].blank? && params[:price_lt].blank?
-      @products = Product.where("price::text>=? AND price::text<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(title: params[:title])
+      @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(title: params[:title])
     else
-      @products = Product.where("price::text>=? AND price::text<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status]).where(title: params[:title])
+      @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status]).where(title: params[:title])
     end
 
   end
