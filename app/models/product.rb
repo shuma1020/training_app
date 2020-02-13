@@ -24,7 +24,13 @@ class Product < ApplicationRecord
         self.user_id == user.id
     end
 
-    def self.count_donation(patrons)
+    def count_donation
+        @patrons = self.patrons.all
         patrons.sum{|patron|patron[:donation]}
     end
+
+    def self.percent_of_donation(dontaion, product)
+        (dontaion.to_f / product.price * 100).round(0)
+    end
+
 end

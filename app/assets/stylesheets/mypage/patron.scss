@@ -24,6 +24,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color:  #ddd;
+  height: 300px;
+  width: 640px;
+  margin-bottom: 12px;
+  p{
+    background-color: #2196F3;
+    width:  150px;
+    height: 80px;
+  }
 }
 
 .center_layout5{
