@@ -13,10 +13,9 @@ class ProductsController < ApplicationController
     end
 
     @products = Product.all
-    @products = Product.where(status: params[:status]).where(title: params[:title]) if params[:title].present?
-    @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status]) if params[:price_gteq].present? && params[:price_lt].present?
-    @products = Product.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}").where(status: params[:status]).where(title: params[:title])if params[:price_gteq].present? && params[:price_lt].present? && params[:title].present?
-
+    @products = @products.where(title: params[:title]) if params[:title].present?
+    @products = @products.where(status: params[:status]) if params[:status].present?
+    @products = @products.where("price>=? AND price<=?", "#{params[:price_gteq]}", "#{params[:price_lt]}") if params[:price_gteq].present? && params[:price_lt].present?
   end
 
   # GET /products/1
