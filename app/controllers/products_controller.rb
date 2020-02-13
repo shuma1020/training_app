@@ -7,11 +7,6 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-
-    if params[:title].nil?
-
-    end
-
     @products = Product.all
     @products = @products.where(title: params[:title]) if params[:title].present?
     @products = @products.where(status: params[:status]) if params[:status].present?
