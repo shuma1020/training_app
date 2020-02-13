@@ -24,7 +24,8 @@ class Product < ApplicationRecord
         self.user_id == user.id
     end
 
-    def self.count_donation(patrons)
+    def count_donation
+        p patrons = self.patrons.all
         patrons.sum{|patron|patron[:donation]}
     end
 
