@@ -5,9 +5,9 @@ RSpec.describe Product, type: :model do
     expect(FactoryBot.build(:user)).to be_valid
   end
 
-  it "has rewards when you manage it as realese" do
-    product = FactoryBot.create(:product)
+  it "needs title" do
+    product = FactoryBot.build(:product, title:nil)
     product.valid?
-    expect(product.errors[:title]).to include("バリデーションに失敗しました: タイトルを入力してください")
+    expect(product.errors[:title]).to include("を入力してください")
   end
 end
