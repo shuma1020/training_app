@@ -1,23 +1,45 @@
 .center_layout{
   text-align: center;
+  vertical-align: middle;
   height: 100px;
-  display: table;
+  display: table-cell;
+  background-color: #ddd;
+  height: 300px;
+  width: 640px;
   p{
-    display: table-cell; /* 子要素はテーブルセル要素にする */
-    vertical-align: middle;
+    display: inline-block;
+    background-color: #2196F3;
+    width:  150px;
+    height: 80px;
+    margin: 0 auto;
   }
 }
 .center_layout2{
-  margin: 0 auto;
-  width: 80%;
-  max-width: 500px;
-  border: solid;
+  background-color: #ddd;
+  height: 300px;
+  width: 640px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  p{
+    background-color: #2196F3;
+    margin: 0 auto;
+    width: 80%;
+    width:  150px;
+    height: 80px;
+  }
 }
 .center_layout3{
   text-align: center;
+  background-color: #ddd;
+  height: 300px;
+  width: 640px;
+  margin-bottom: 12px;
   p{
     display: inline-block;
     text-align: left;
+    background-color: #2196F3;
+    width:  150px;
+    height: 80px;
   }
 }
 .center_layout4{
