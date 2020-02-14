@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   it "is valid name and email, and password" do
-    user= User.new(name:"shuma",
-      email:"aaa@gmail.com",
-      password: "121212",)
+    user= FactoryBot.build(:user)
     expect(user).to be_valid
   end
 
@@ -16,7 +14,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is invalid without an email address" do
-    user = User.new(email:nil)
+    user = FactoryBot.build(:user,email:nil)
     user.valid?
     expect(user.errors[:email]).to include("を入力してください")
   end
