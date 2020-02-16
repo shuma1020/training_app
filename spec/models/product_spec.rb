@@ -10,4 +10,11 @@ RSpec.describe Product, type: :model do
     product.valid?
     expect(product.errors[:title]).to include("を入力してください")
   end
+
+  it "needs rewards when its status is release" do
+    reward = FactoryBot.build(:reward, product_id:1)
+    product = FactoryBot.build(:product, status:"release",id:1)
+    product.valid?
+    expect(product.errors[:base]).to include("Rewardを入れてください")
+  end
 end
