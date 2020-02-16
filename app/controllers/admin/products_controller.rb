@@ -5,7 +5,8 @@ class Admin::ProductsController < ApplicationController
         @product = Product.all
     end
     def index
-        @products = Product.all
+        @q = Product.ransack(params[:q])
+        @products = @q.result(distinct: true)
     end
 
     def create
@@ -19,10 +20,12 @@ class Admin::ProductsController < ApplicationController
 
     end
 
+
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+        @product = Product.find(params[:id])
     end
 
     def admin_check
@@ -31,4 +34,5 @@ class Admin::ProductsController < ApplicationController
             flash[:notice] = "管理者画面です"
         end
     end
+
 end

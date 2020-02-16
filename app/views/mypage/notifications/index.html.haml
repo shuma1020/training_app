@@ -1,13 +1,21 @@
-- @notifications.each do |notification|
-  - if notification.to_product_owner?
-    %p
-    = link_to notification.patron.product.title, product_path(notification.patron.product)
-    に
-    = notification.patron.user.email
-    がパトロンになりました
-  - else
-    %p
-    = link_to notification.patron.product.title, product_path(notification.patron.product)
-    のパトロンになりました
-
+.mypage-notification
+  .row
+    .receive-messages
+      %h4 受信したメッセージ
+    .col-3
+      .receive-box
+        受信
+    .col-9
+      - @notifications.each do |notification|
+        - if notification.to_product_owner?
+          %p
+          = link_to notification.patron.product.title, product_path(notification.patron.product)
+          に
+          = notification.patron.user.email
+          がパトロンになりました
+        - else
+          %p
+          = link_to notification.patron.product.title, product_path(notification.patron.product)
+          のパトロンになりました
+        %hr
 

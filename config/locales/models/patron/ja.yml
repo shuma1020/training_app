@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      patron: パトロン
+    attributes:
+        patron:
+          donation: 寄付金

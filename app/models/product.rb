@@ -23,4 +23,8 @@ class Product < ApplicationRecord
     def owner?(user)
         self.user_id == user.id
     end
+
+    def self.percent_of_donation(dontaion, product)
+        (dontaion.to_f / product.price * 100).round(0)
+    end
 end

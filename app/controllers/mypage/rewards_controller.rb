@@ -1,4 +1,5 @@
 class Mypage::RewardsController < ApplicationController
+  before_action :correct_product, only: [:show, :edit, :update, :destroy]
   before_action :set_reward, only: [:show, :edit, :update, :destroy]
 
   # GET /rewards
@@ -30,9 +31,8 @@ class Mypage::RewardsController < ApplicationController
   # POST /rewards
   # POST /rewards.json
   def create
-    p "kkk"
-    p @product = Product.find(params[:product_id])
-    p @reward = @product.rewards.new(reward_params)
+    @product = Product.find(params[:product_id])
+    @reward = @product.rewards.new(reward_params)
     respond_to do |format|
       if  @reward.save
         format.html { redirect_to mypage_product_path(@product), notice: 'Reward was successfully created.' }
@@ -71,8 +71,19 @@ class Mypage::RewardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reward
-      @product = Product.find(params[:product_id])
+      @product = current_user.products.find(params[:product_id])
       @reward = @product.rewards.find(params[:id])
+    end
+
+    def correct_product
+      if current_user.products.where(id: params[:product_id]).exists?
+        @product = current_user.products.find(params[:product_id])
+        unless @product
+          redirect_to new_product_patron_path
+        end
+      else
+        redirect_to mypage_products_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

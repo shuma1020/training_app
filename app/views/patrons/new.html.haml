@@ -1,57 +1,45 @@
-%p.main-title
-  = @product.title
-= link_to "Back", product_path(@product)
-.row
-  .col-sm-7
-    - if @product.image?
-      .thumb
-        = image_tag @product.image.url,class:"img-thumbnail ", alt:"Responsive image"
-  .col-sm-3
-    %strong 目標金額
-    %p.show-title
-      = @product.price
-    %strong 概要
-    %p.show-title
-      = @product.description
-    %strong 状態
-    %p.show-title
-      = @product.status
-    %strong メッセージ
-    %p.show-title
-      = @product.message
-.second-main
-  .reward
-    %h1 Rewards
-    %table
-      %thead
-        %tr
-          %th Title
-          %th Description
-          %th Price
-          %th Product
-          %th{:colspan => "3"}
-      %tbody
-        - @rewards.each do |reward|
-          %tr
-            %td= reward.title
-            %td= reward.description
-            %td= reward.price
-            %td= reward.product_id
-            %td= reward.user_id
-            %td= link_to 'Show', mypage_product_reward_path(@product, reward)
-            %td= link_to 'Edit', edit_mypage_product_reward_path(@product, reward)
-            %td= link_to 'Destroy', mypage_product_reward_path(@product, reward), method: :delete, data: { confirm: 'Are you sure?' }
-  .donation
-    = form_with model: [@product, @patron], local: true do |form|
-      .field
-        = form.label :金額
-        = form.number_field :donation, class:"form-control"
-      = form.submit class:"btn btn-primary"
-    - if @patron.errors.any?
-      #error_explanation
-        %h2
-          = pluralize(@patron.errors.count, "error")
-          prohibited this product from being saved:
-        %ul
-          - @patron.errors.full_messages.each do |message|
-            %li= message
+.donation-button-right
+  = link_to "Back", product_path(@product),class:"btn btn-primary"
+.patron-new
+  .row
+    .col-8
+      - @rewards.each do |reward|
+        .card
+          .card-text
+            .card-header
+              = reward.price
+              円以上
+            .card-body
+              = reward.title
+              .card-text
+                = reward.description
+      .donation
+        = form_with model: [@product, @patron], local: true do |form|
+          .field
+            = form.label :金額
+            = form.number_field :donation, class:"form-control"
+          = form.submit class:"btn btn-primary"
+        - if @patron.errors.any?
+          =render "shared/error"
+    .col-4
+      .check-patron
+        %i.fa.fa-check-square
+        %span パトロンになるプロジェクト
+      .card
+        .card-image-top{style:"background-image:url('#{@product.image.url}')"}
+        .card-body
+          %h5
+            = @product.title
+          .row
+            .col-6
+              %strong 目標金額
+            .col-6
+              = @product.price
+              円
+          .row
+            .col-6
+              %strong 概要
+            .col-6
+              = @product.description
+        .card-text
+          = @product.message

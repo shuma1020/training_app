@@ -2,3 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.mypage-notification{
+  .receive-messages{
+    padding: 24px;
+    margin-bottom: 12px;
+    background-color: #e3e4e8;
+    width: 100%;
+    h4{
+      text-align: center;
+    }
+  }
+  .col-3{
+    padding: 0;
+    .receive-box{
+      color: #333;
+      background-color: #e3e4e8;
+      padding: 12px 0px 12px 24px;
+      width: 80%;
+    }
+  }
+  .col-9{
+    background-color: #eeeeee;
+    text-align: center;
+  }
+}
