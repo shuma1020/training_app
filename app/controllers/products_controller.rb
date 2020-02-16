@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
     @patron = current_user.patrons.find_by(product: @product)
     @patrons = @product.patrons.all
     @current_donation = @product.counts_donation
-    @percent = @product.percent_of_donation(@current_donation)
+    @percent = @product.percent_of_donation
   end
 
   def draft
