@@ -8,11 +8,8 @@ class Patron < ApplicationRecord
   private
 
   def donation_error
-    p product
-    p product.rewards.title
-    p "Kkk"
-      p reward = product.rewards.order(price: :desc).last
-      errors.add(:base, "最低金額に達していません") if self.donation != nil && self.donation < reward.price
+    reward = product.rewards.order(price: :desc).last
+    errors.add(:base, "最低金額に達していません") if self.donation != nil && self.donation < reward.price
   end
 
   def self.create_with_donation(product, user, patron_params)
