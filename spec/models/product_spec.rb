@@ -13,7 +13,8 @@ RSpec.describe Product, type: :model do
 
   it "needs rewards when its status is release" do
     product = FactoryBot.create(:product, status:"draft")
-    product.update(status: "release")
+    product.status = "release"
+    product.valid?
     expect(product.errors[:base]).to include("Rewardを入れてください")
   end
 end
