@@ -19,6 +19,11 @@ RSpec.describe User, type: :model do
     expect(user.errors[:email]).to include("を入力してください")
   end
 
-  it "allow only user who are not to like " do
+  it "can not like own product " do　#liked_for?(product)のテスト未完成
+    user = FactoryBot.build(:user)
+    product = FactoryBot.build(:product)
+    product.user == user #product.user == userではfalseが帰ってきて欲しい
+    user.valid?
+    expect(user).to_not be_valid
   end
 end
