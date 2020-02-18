@@ -18,4 +18,7 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:email]).to include("を入力してください")
   end
+
+  it "allow only user who are not to like " do
+  end
 end
