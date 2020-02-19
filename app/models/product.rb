@@ -33,4 +33,8 @@ class Product < ApplicationRecord
         donation = self.counts_donation
         (donation.to_f / self.price * 100).round(0)
     end
+
+    def self.donated_all
+        products = Product.joins(:patrons)
+    end
 end
