@@ -6,7 +6,6 @@ RSpec.describe Like, type: :model do
     user = FactoryBot.build(:user)
     product = FactoryBot.build(:product, user:user)
     like = FactoryBot.build(:like, user:user, product:product)
-    like.valid?
-    expect(like.errors[:base]).to include("いいねはできません！")
+    expect(like).to_not be_valid
   end
 end
