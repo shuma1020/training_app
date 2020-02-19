@@ -19,11 +19,21 @@ RSpec.describe User, type: :model do
     expect(user.errors[:email]).to include("を入力してください")
   end
 
-  it "can not like own product " do　#liked_for?(product)のテスト未完成
+  it "can not like own product" do
+    user = FactoryBot.build(:user)
+    product = FactoryBot.build(:product, user:user)
+    expect(user.liked_for?(product)).to be_falsey
+  end
+
+  it "can not like product which has already been liked" do
     user = FactoryBot.build(:user)
     product = FactoryBot.build(:product)
-    product.user == user #product.user == userではfalseが帰ってきて欲しい
-    user.valid?
-    expect(user).to_not be_valid
+    FactoryBot.create(:like, product:product, user:user)
+    expect(user.liked_for?(product)).to be_falsey
+  end
+
+  it "can not like nil" do
+    user = FactoryBot.build(:user)
+    expect(user.liked_for?(nil)).to be_falsey
   end
 end
