@@ -10,4 +10,9 @@ RSpec.describe Product, type: :model do
     product.valid?
     expect(product.errors[:title]).to include("を入力してください")
   end
+
+  it "must have a patron at least" do
+    Product.donated_all
+    expect(Product.donated_all).to be
+  end
 end
