@@ -8,7 +8,10 @@ class Reward < ApplicationRecord
 
     private
     def check_number_of_rewards
-        if product.rewards.count > 2
+        p product.rewards.count
+        p product.rewards.size
+        p "kkkk"
+        if product.rewards.count > 3
             errors.add(:base, "設定できるRewardは３つまでです")
         end
     end
