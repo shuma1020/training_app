@@ -33,4 +33,8 @@ class Product < ApplicationRecord
         donation = self.counts_donation
         (donation.to_f / self.price * 100).round(0)
     end
+
+    def self.ranked_patron_count
+        products = self.joins(:patrons).group(:product_id).order("count_all DESC")
+    end
 end
