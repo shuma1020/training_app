@@ -8,8 +8,8 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.page(params[:page]).per(6)
-    p products = Product.ranked_patron_count
-    p Product.ranked_patron_count.class.name
+    products = Product.ranked_patron_count
+    products.each {|product| puts product[:patron_count]  }
   end
 
   # GET /products/1
