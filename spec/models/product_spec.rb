@@ -14,4 +14,8 @@ RSpec.describe Product, type: :model do
   it "must have a patron at least" do
     expect(Product.donated_all).to be_empty
   end
+
+  it "have patrons" do #donated_all
+
+  end
 end
