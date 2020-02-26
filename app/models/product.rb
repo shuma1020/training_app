@@ -35,6 +35,6 @@ class Product < ApplicationRecord
     end
 
     def self.ranked_patron_count
-        products = self.joins(:patrons).group(:product_id).select('count(donation) as patron_count').order('patron_count desc')
+        products = self.Product.joins(:patrons).group(:product_id).select('count(patrons.product_id) as patron_count').order('patron_count desc')
     end
 end
