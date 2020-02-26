@@ -27,5 +27,6 @@ RSpec.describe Product, type: :model do
     patron = FactoryBot.create(:patron, product:product_1, reward:reward,donation:2000)
     products = Product.ranked_patron_count
     expect(products.first[:patron_count]).to be 2
+    expect(products.second[:patron_count]).to be 1
   end
 end
