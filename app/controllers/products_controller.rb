@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.page(params[:page]).per(6)
-    p products = Product.ranked_patron_count
+    products = Product.ranked_patron_count
   end
 
   # GET /products/1
