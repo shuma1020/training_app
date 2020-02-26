@@ -17,8 +17,14 @@ RSpec.describe Product, type: :model do
 
   it "have patrons" do #donated_all
     product = FactoryBot.create(:product)
-    reward = FactoryBot.create(:reward, product:product)
-    patron = FactoryBot.create(:patron, product:product, reward:reward)
-    expect(Product.donated_all).to_not be_empty
+    product_1 = FactoryBot.create(:product, price:300)
+    product_2 = FactoryBot.create(:product, price: 400)
+    reward_1 = FactoryBot.create(:reward, product:product_1)
+    reward_2 = FactoryBot.create(:reward, product:product_2)
+    patron = FactoryBot.create(:patron, product:product_1, reward:reward_1)
+    patron = FactoryBot.create(:patron, product:product_2, reward:reward_2)
+    patron = FactoryBot.create(:patron, product:product_2, reward:reward_2)
+    expect(Product.donated_all).to_not include product
+    expect(Product.donated_all).to include product_1
   end
 end

@@ -35,6 +35,6 @@ class Product < ApplicationRecord
     end
 
     def self.donated_all
-        products = Product.joins(:patrons)
+        products = self.joins(:patrons)
     end
 end
