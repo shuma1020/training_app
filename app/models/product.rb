@@ -32,6 +32,5 @@ class Product < ApplicationRecord
     def percent_of_donation
         donation = self.counts_donation
         (donation.to_f / self.price * 100).round(0)
-        aaa
     end
 end
