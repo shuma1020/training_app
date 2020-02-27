@@ -26,5 +26,6 @@ RSpec.describe Product, type: :model do
     patron = FactoryBot.create(:patron, product:product_2, reward:reward_2)
     expect(Product.donated_all).to_not include product
     expect(Product.donated_all).to include product_1
+    expect(Product.donated_all).to include product_2
   end
 end
