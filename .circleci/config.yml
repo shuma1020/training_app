@@ -1,56 +1,110 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/circleci-demo-ruby-rails
-
-    # Primary container image where all commands run
-
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-        environment:
-          RAILS_ENV: test
-          PGHOST: 127.0.0.1
-          PGUSER: root
+      - image: ubuntu:14.04
 
-    # Service container image available at `host: localhost`
+      - image: mongo:2.6.8
+        command: [mongod, --smallfiles]
 
-      - image: circleci/postgres:9.6.2-alpine
+      - image: postgres:9.4.1
+        # コンテナによっては環境変数の設定が必要
         environment:
           POSTGRES_USER: root
-          POSTGRES_DB: rename_sample_app_test
+
+      - image: redis@sha256:54057dd7e125ca41afe526a877e8bd35ec2cdd33b9217e022ed37bdcf7d09673
+
+      - image: rabbitmq:3.5.4
+
+    environment:
+      TEST_REPORTS: /tmp/test-reports
+
+    working_directory: ~/my-project
 
     steps:
       - checkout
 
-      # Restore bundle cache
+      - run:
+          command: echo 127.0.0.1 devhost | sudo tee -a /etc/hosts
+
+      # Postgres ユーザーとデータベースを作成
+      # 整形に使う YAML のヒアドキュメントの「|」に注意
+      - run: |
+          sudo -u root createuser -h localhost --superuser ubuntu &&
+          sudo createdb -h localhost test_db
+
       - restore_cache:
           keys:
-            - rails-demo-{{ checksum "Gemfile.lock" }}
-            - rails-demo-
-
-      # Bundle install dependencies
-      - run:
-          name: Install dependencies
-          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
-
-      - run: sudo apt install -y postgresql-client || true
-
-      # Store bundle cache
-      - save_cache:
-          key: rails-demo-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+            - v1-my-project-{{ checksum "project.clj" }}
+            - v1-my-project-
 
       - run:
-          name: Database Setup
+          environment:
+            SSH_TARGET: "localhost"
+            TEST_ENV: "linux"
           command: |
-            bundle exec rake db:create
-            bundle exec rake db:structure:load
+            set -xu
+            mkdir -p ${TEST_REPORTS}
+            run-tests.sh
+            cp out/tests/*.xml ${TEST_REPORTS}
 
-      - run:
-          name: Parallel RSpec
-          command: bin/rails test
+      - run: |
+          set -xu
+          mkdir -p /tmp/artifacts
+          create_jars.sh ${CIRCLE_BUILD_NUM}
+          cp *.jar /tmp/artifacts
 
-      # Save artifacts
+      - save_cache:
+          key: v1-my-project-{{ checksum "project.clj" }}
+          paths:
+            - ~/.m2
+
+      # artifacts を保存
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: build
+
+      # テスト結果をアップロード
       - store_test_results:
-          path: /tmp/test-results
+          path: /tmp/test-reports
+
+  deploy-stage:
+    docker:
+      - image: ubuntu:14.04
+    working_directory: /tmp/my-project
+    steps:
+      - run:
+          name: Deploy if tests pass and branch is Staging
+          command: ansible-playbook site.yml -i staging
+
+  deploy-prod:
+    docker:
+      - image: ubuntu:14.04
+    working_directory: /tmp/my-project
+    steps:
+      - run:
+          name: Deploy if tests pass and branch is Master
+          command: ansible-playbook site.yml -i production
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - /feature-.*/
+      - deploy-stage:
+          requires:
+            - build
+          filters:
+            branches:
+              only: staging
+      - deploy-prod:
+          requires:
+            - build
+          filters:
+            branches:
+              only: maste
