@@ -4,7 +4,7 @@ class Like < ApplicationRecord
     validate :check_liked
 
     def check_liked
-        unless user && user.liked_for?(product)
+        unless user.liked_for?(product)
             errors.add(:base, "いいねはできません！")
         end
     end

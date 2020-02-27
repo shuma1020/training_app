@@ -4,11 +4,11 @@ class Reward < ApplicationRecord
     validates :price, presence: true
     validates :description, presence: true
     has_many :patrons
-    validate :check_number_of_rewards
+    after_save :check_number_of_rewards
 
     private
     def check_number_of_rewards
-        if product.rewards.count > 2
+        if product.rewards.size > 3
             errors.add(:base, "設定できるRewardは３つまでです")
         end
     end
