@@ -1,8 +1,11 @@
-version: 2
+version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2
+
 jobs:
   build:
     docker:
-      - image: ubuntu:14.04
+      - image: circleci/ruby:2.6.3-stretch-node
 
       - image: mongo:2.6.8
         command: [mongod, --smallfiles]
@@ -107,4 +110,4 @@ workflows:
             - build
           filters:
             branches:
-              only: maste
+              only: circle
